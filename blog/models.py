@@ -1,6 +1,9 @@
 from django.db import models
 #引入django内置的表 User
 from django.contrib.auth.models import User
+# 导入reverse 函数
+from django.urls import reverse
+
 # Create your models here.
 
 class Category(models.Model):
@@ -86,3 +89,11 @@ class Post(models.Model):
     def __str__(self):
         #返回了该表中列的名称
         return self.title
+
+    #在url的配置中，设定的name=detatil派上了用场 
+    #这个函数的第一个参数（blog：detail）的意思是blog应用下的detail函数，
+    #由于我们在上面用app_name=‘bolg’ 告诉了django 这个eurl模块是属于blog的，
+    #因此django能找到blog应用下views里的detail函数，从而去试图解析对应的正则 post/(?P<pk>[0-9]+) 
+    #这个表达式之后的参数pk 会被后面传入的参数pk替换，如果post的id是255，那么该函数返回post/255/ 从而生成自己的url
+    def get_absolute_url(self):
+        return reverse('blog:detail',kwargs={'pk':self.pk})
