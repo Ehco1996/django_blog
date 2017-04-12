@@ -3,8 +3,7 @@
 <article class="post post-1">
 <header class="entry-header">
 	<h1 class="entry-title">
-		{{ post.title }}
-
+		{{ post.title }}11{{ post.tags }}
 	</h1>
 	<div class="entry-meta">
 		<span class="post-category"><a href="#">{{ post.category.name }} </a></span>
@@ -22,7 +21,7 @@
 </header>
 
 <div class="entry-content clearfix">
-	{{ post.body }}
+	{{ post.body|safe }}
 </div>
 
 </article>

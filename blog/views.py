@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .models import Post
-
+import markdown
 from django.shortcuts import render, get_object_or_404
 # Create your views here.
 
@@ -12,9 +12,15 @@ def index(request):
 
 
 
+
 def detail(request, pk):
-    # pk的意思是主键，即从url获取文章id
+    '''
+    这里pk参数和上次编写的一样，都是通过主键id来获取文章
+    '''
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/detail.html', context={'post': post})
-
-
+    post.body = markdown.markdown(post.body, extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.toc',
+    ])
+    return render(request,'blog/detail.html',context={'post':post})
