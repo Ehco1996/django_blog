@@ -23,6 +23,9 @@ class Category(models.Model):
     
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        #返回了该表中列的名称
+        return self.name
 
 class Tag(models.Model):
     '''
@@ -30,6 +33,10 @@ class Tag(models.Model):
     目前也比较简单，只有一列用来存储对应文章id的标签
     '''
     name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        #返回了该表中列的名称
+        return self.name
 
 class Post(models.Model):
     '''
@@ -75,3 +82,7 @@ class Post(models.Model):
     #因为规定一个文章只能有一个作者（author），而一个作者可以有多篇文章
     #所以这里也是一对多的关系
     author =  models.ForeignKey(User)
+
+    def __str__(self):
+        #返回了该表中列的名称
+        return self.title
