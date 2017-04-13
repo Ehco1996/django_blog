@@ -8,7 +8,7 @@
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="shortcut icon" href="{% static 'blog/pic/icon.ico' %}" type="image/x-icon"/> 
     <!-- css -->
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -23,6 +23,7 @@
     <script src="{% static 'blog/js/modernizr.custom.js' %}"></script>
 
 </head>
+
 <body>
     <div class="container">
         <header id="site-header">
@@ -91,7 +92,7 @@
                         <ul>
                             {% for date in archives_list %}
                             <li>
-                                <a href="#">{{ date.year }} 年 {{ date.month }} 月 </a>
+                                <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月 </a>
                             </li>
                             {% endfor %}
                         </ul>
@@ -101,9 +102,9 @@
                         <h3 class="widget-title">分类</h3>
                         {% get_categories as category_list %}
                         <ul>
-                            {% for cate in category_list %}
+                            {% for category in category_list %}
                             <li>
-                                <a href="#">{{ cate.name }}</a>
+                                <a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a>
                             </li>
                             {% endfor %}
                         </ul>
