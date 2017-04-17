@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render,HttpResponse
 
-from .models import Post, Category
 import markdown
-from django.shortcuts import render, get_object_or_404
+
+from .forms import AddForm, CommentForm
+from .models import Category, Post
+
+
 # Create your views here.
 
 
@@ -21,7 +24,15 @@ def detail(request, pk):
         'markdown.extensions.codehilite',
         'markdown.extensions.toc',
     ])
-    return render(request, 'blog/detail.html', context={'post': post})
+    # 生成 评论表单的实例
+    form = CommentForm
+    comment_list = post.comment_set.all()
+    context = {
+        'post': post,
+        'form': form,
+        'comment_list': comment_list,
+    }
+    return render(request, 'blog/detail.html', context=context)
 
 
 def archives(request, year, month):
@@ -34,3 +45,16 @@ def category(request, pk):
     cate = get_object_or_404(Category, pk=pk)
     post_list = Post.objects.filter(category=cate)
     return render(request, 'blog/index.html', context={'post_list': post_list})
+
+
+def test(request):
+    if request.method == 'POST':
+        form = AddForm(request.POST)
+
+        if form.is_valid():
+            a = form.cleaned_data['a']
+            b = form.cleaned_data['b']
+            return HttpResponse(int(a)+int(b))
+    else:
+        form = AddForm()
+    return render(request, 'blog/test.html', {'form': form})

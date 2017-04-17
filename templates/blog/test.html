@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<p>this is a test page</p>
+
+<body>      
+    <p> please inpit 2 number</p>
+
+    <form  method="post">
+        {% csrf_token %}
+        {{ form }}
+       
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>
