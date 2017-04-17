@@ -8,7 +8,7 @@
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{% static 'blog/pic/icon.ico' %}" type="image/x-icon"/> 
+    <link rel="shortcut icon" href="{% static 'blog/pic/icon.ico' %}" type="image/x-icon" />
     <!-- css -->
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -21,11 +21,15 @@
     <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'blog/js/pace.min.js' %}"></script>
     <script src="{% static 'blog/js/modernizr.custom.js' %}"></script>
+    <script src="{% static 'blog/js/ehco.js' %}"></script>
+
 
 </head>
 
 <body>
     <div class="container">
+        <audio id="music2" src="{% static 'blog/media/bgm.mp3' %}" autoplay="autoplay" loop="loop">你的浏览器不支持audio标签。</audio>
+
         <header id="site-header">
             <div class="row">
                 <div class="col-md-4 col-sm-5 col-xs-8">
@@ -44,20 +48,24 @@
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="cl-effect-11"><a href="/" data-hover="Home">Home</a></li>
+                                <li class="cl-effect-8"><a href="/" data-hover="Home">Home</a></li>
+                                <li class="cl-effect-8">
+                                    <a type="button" href="javascript:playPause();">BGM开/关</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->
+
                     </nav>
-                   <div id="header-search-box">
-                    <a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
-                    <div id="search-form" class="search-form">
-                        <form role="search" method="get" id="searchform" action="#">
-                            <input type="search" placeholder="开发中..." required>
-                            <button type="submit"><span class="ion-ios-search-strong"></span></button>
-                        </form>
+                    <div id="header-search-box">
+                        <a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
+                        <div id="search-form" class="search-form">
+                            <form role="search" method="get" id="searchform" action="#">
+                                <input type="search" placeholder="开发中..." required>
+                                <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                            </form>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <!-- col-md-8 -->
             </div>
@@ -114,7 +122,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p> 这里是footer 待编辑</p>
+                    <p class="copyright">&copy; 2017·<a>公众号: findyourownway </a>·<a href="https://github.com/ehco1996">GitHub</a>·
+                        <a href="https://www.zhihu.com/people/Ehcostuff/activities">知乎</a>
+                    </p>
                 </div>
             </div>
         </div>
