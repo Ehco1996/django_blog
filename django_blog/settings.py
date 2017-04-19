@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
         'www.ehcoblog.ml',
+        '127.0.0.1',
 ]
 
 
