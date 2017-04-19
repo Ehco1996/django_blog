@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render,HttpResponse
+from django.shortcuts import get_object_or_404, render, HttpResponse
 
 import markdown
 
@@ -54,7 +54,7 @@ def test(request):
         if form.is_valid():
             a = form.cleaned_data['a']
             b = form.cleaned_data['b']
-            return HttpResponse(int(a)+int(b))
+            return HttpResponse(int(a) + int(b))
     else:
         form = AddForm()
     return render(request, 'blog/test.html', {'form': form})
