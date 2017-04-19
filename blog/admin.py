@@ -21,4 +21,3 @@ admin.site.register(Post,PostAdmin)
 admin.site.register(Category)
 admin.site.register(Tag)
 admin.site.register(Comment, PostComment)
-

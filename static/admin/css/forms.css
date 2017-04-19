@@ -1,515 +1,552 @@
-@import url('widgets.css');
-
-/* FORM ROWS */
+/* change_form */
+.form-panel .errornote {
+  color: #a94442;
+  font-weight: bold;
+}
+.form-expand {
+  padding: 7px;
+  position: absolute;
+  right: -30px;
+  top: 5px;
+  z-index: 1;
+}
 
 .form-row {
-    overflow: hidden;
-    padding: 10px;
-    font-size: 13px;
-    border-bottom: 1px solid #eee;
+  clear: both;
+}
+.form-row,
+.form-panel {
+  position: relative;
+}
+.form-row .add-another,
+.form-row .related-lookup {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.form-row label {
+  font-weight: normal;
+}
+.form-row label.required {
+  font-weight: bold;
+}
+.field-boxes {
+  overflow: hidden;
+}
+.field-boxes .checkbox {
+  padding-top: 20px;
+}
+.form-row.field-box {
+  clear: none;
 }
 
-.form-row img, .form-row input {
-    vertical-align: middle;
+.list-group {
+  margin-bottom: 10px;
+}
+.submit-row .list-group-item {
+  width: 100%;
+  text-align: left;
+}
+.submit-row button:hover,
+.submit-row button:focus {
+  background-color: #f5f5f5;
+  color: #555;
+}
+.submit-row.list-group.affix {
+  padding-right: 15px;
+  top: 15px;
+}
+.object-tools {
+  padding:0;
+}
+.object-tools .btn {
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+.object-tools li:only-child a {
+  border-radius: 4px !important;
 }
 
-.form-row label input[type="checkbox"] {
+.form-fields {
+  padding-left: 0;
+}
+.form-buttons {
+  padding-right: 0;
+}
+.form-buttons.contracted .text {
+  display: none;
+}
+.form-buttons.contracted .list-group-item {
+  text-align: center;
+}
+.form-buttons.contracted .btn-default,
+.form-buttons.contracted .list-group-item {
+  padding: 10px 0;
+}
+.form-buttons.contracted .object-tools {
+  width: 100%;
+}
+
+.form-buttons .affix {
+  margin-right: 15px;
+  top: 15px;
+}
+.form-buttons.contracted .affix {
+  margin-right: 0;
+  right: 15px;
+}
+.form-buttons.contracted .affix .btn-default,
+.form-buttons.contracted .affix .list-group-item {
+  padding: 15px;
+}
+
+.inline li{
+  margin-right: 5px;
+}
+.inline li, .inline label, .clearable-file-input label{
+  display: inline;
+}
+
+.form-row > div > ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+#content-main .form-fields .collapse {
+  display: block;
+  visibility: visible;
+}
+.form-fields .collapsed .form-row {
+  display: none;
+}
+.form-fields h2 {
+  font-size: 18px;
+}
+fieldset.module > h2:first-child {
     margin-top: 0;
-    vertical-align: 0;
+}
+.form-fields .collapse h2 {
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  border-top: 2px solid #ddd;
+  margin: 10px -15px 10px;
+  padding: 5px 15px;
 }
 
-form .form-row p {
-    padding-left: 0;
+/*m2m filter: filter_vertical, filter_horizontal*/
+.selector {
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  margin: 0 -15px;
+  position: relative;
+  overflow: auto;
+}
+.selector h2 {
+  font-size: 18px;
+  margin: 10px 15px;
+}
+.selector .selector-available {
+  float: left;
+}
+.selector .selector-available,
+.selector .selector-chosen {
+  width: 40%;
+}
+.selector .selector-chooser {
+  background: #f4f4f4;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  float: left;
+  height: 100%;
+  left: 40%;
+  list-style: none;
+  margin: 0;
+  padding:9.5em 10px 0 10px;
+  position: absolute;
+  text-align: center;
+  width: 20%;
+}
+.selector .selector-chosen {
+  float: right;
+}
+.selector .selector-chosen select {
+  background: #fff;
+  height: 19.12em !important;
+}
+.selector select {
+  border: 0;
+  border-bottom: 1px solid #eee;
+  height: 17.2em;
+  padding: 5px 15px;
+  width: 100%;
+}
+.selector select option {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.selector .selector-filter {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  margin: 0;
+  position: relative;
+}
+.selector .selector-filter input {
+  border: 0 none;
+  padding: 5px 5px 0 38px;
+  width: 100%;
+}
+.selector .selector-filter label {
+  left: 15px;
+  position: absolute;
+  top: 2px;
+}
+.selector .selector-clearall,
+.selector .selector-chooseall {
+  display: block;
+  margin: 10px;
+  text-align: center;
 }
 
-.hidden {
-    display: none;
+.selector.stacked .selector-available,
+.selector.stacked .selector-chooser,
+.selector.stacked .selector-chosen {
+  float: none;
+  width: 100%;
 }
-
-/* FORM LABELS */
-
-label {
-    font-weight: normal;
-    color: #666;
-    font-size: 13px;
+.selector.stacked .selector-chooser {
+  border: 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  position: initial;
 }
-
-.required label, label.required {
-    font-weight: bold;
-    color: #333;
+.selector.stacked .selector-chooser > li {
+  display: inline-block;
+  text-align: center;
+  width: 50%;
 }
-
-/* RADIO BUTTONS */
-
-form ul.radiolist li {
-    list-style-type: none;
+.widget_type__filteredselectmultiple .input-group {
+  width: 100%;
 }
-
-form ul.radiolist label {
-    float: none;
-    display: inline;
+.widget_type__filteredselectmultiple .add-related {
+  position: absolute;
+  right: 0;
+  top: -29px;
+  width: auto;
 }
-
-form ul.radiolist input[type="radio"] {
-    margin: -2px 4px 0 0;
-    padding: 0;
+.widget_type__filteredselectmultiple .add-related {
+  border-right: 1px solid #ccc;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
 }
-
-form ul.inline {
-    margin-left: 0;
-    padding: 0;
-}
-
-form ul.inline li {
-    float: left;
-    padding-right: 7px;
-}
-
-/* ALIGNED FIELDSETS */
-
-.aligned label {
-    display: block;
-    padding: 4px 10px 0 0;
-    float: left;
-    width: 160px;
-    word-wrap: break-word;
-    line-height: 1;
-}
-
-.aligned label:not(.vCheckboxLabel):after {
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    height: 26px;
-}
-
-.aligned label + p, .aligned label + div.help, .aligned label + div.readonly {
-    padding: 6px 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 170px;
-}
-
-.aligned ul label {
-    display: inline;
-    float: none;
-    width: auto;
-}
-
-.aligned .form-row input {
-    margin-bottom: 0;
-}
-
-.colMS .aligned .vLargeTextField, .colMS .aligned .vXMLLargeTextField {
-    width: 350px;
-}
-
-form .aligned ul {
-    margin-left: 160px;
-    padding-left: 10px;
-}
-
-form .aligned ul.radiolist {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-}
-
-form .aligned p.help,
-form .aligned div.help {
-    clear: left;
-    margin-top: 0;
-    margin-left: 160px;
-    padding-left: 10px;
-}
-
-form .aligned label + p.help,
-form .aligned label + div.help {
-    margin-left: 0;
-    padding-left: 0;
-}
-
-form .aligned p.help:last-child,
-form .aligned div.help:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-form .aligned input + p.help,
-form .aligned textarea + p.help,
-form .aligned select + p.help,
-form .aligned input + div.help,
-form .aligned textarea + div.help,
-form .aligned select + div.help {
-    margin-left: 160px;
-    padding-left: 10px;
-}
-
-form .aligned ul li {
-    list-style: none;
-}
-
-form .aligned table p {
-    margin-left: 0;
-    padding-left: 0;
-}
-
-.aligned .vCheckboxLabel {
-    float: none;
-    width: auto;
-    display: inline-block;
-    vertical-align: -3px;
-    padding: 0 0 5px 5px;
-}
-
-.aligned .vCheckboxLabel + p.help,
-.aligned .vCheckboxLabel + div.help {
-    margin-top: -4px;
-}
-
-.colM .aligned .vLargeTextField, .colM .aligned .vXMLLargeTextField {
-    width: 610px;
-}
-
-.checkbox-row p.help,
-.checkbox-row div.help {
-    margin-left: 0;
-    padding-left: 0;
-}
-
-fieldset .field-box {
-    float: left;
-    margin-right: 20px;
-}
-
-/* WIDE FIELDSETS */
-
-.wide label {
-    width: 200px;
-}
-
-form .wide p,
-form .wide input + p.help,
-form .wide input + div.help {
-    margin-left: 200px;
-}
-
-form .wide p.help,
-form .wide div.help {
-    padding-left: 38px;
-}
-
-form div.help ul {
-    padding-left: 0;
-    margin-left: 0;
-}
-
-.colM fieldset.wide .vLargeTextField, .colM fieldset.wide .vXMLLargeTextField {
-    width: 450px;
-}
-
-/* COLLAPSED FIELDSETS */
-
-fieldset.collapsed * {
-    display: none;
-}
-
-fieldset.collapsed h2, fieldset.collapsed {
-    display: block;
-}
-
-fieldset.collapsed {
-    border: 1px solid #eee;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-fieldset.collapsed h2 {
-    background: #f8f8f8;
-    color: #666;
-}
-
-fieldset .collapse-toggle {
-    color: #fff;
-}
-
-fieldset.collapsed .collapse-toggle {
-    background: transparent;
-    display: inline;
-    color: #447e9b;
-}
-
-/* MONOSPACE TEXTAREAS */
-
-fieldset.monospace textarea {
-    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
-}
-
-/* SUBMIT ROW */
-
-.submit-row {
-    padding: 12px 14px;
-    margin: 0 0 20px;
-    background: #f8f8f8;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    text-align: right;
-    overflow: hidden;
-}
-
-body.popup .submit-row {
-    overflow: auto;
-}
-
-.submit-row input {
-    height: 35px;
-    line-height: 15px;
-    margin: 0 0 0 5px;
-}
-
-.submit-row input.default {
-    margin: 0 0 0 8px;
-    text-transform: uppercase;
-}
-
-.submit-row p {
-    margin: 0.3em;
-}
-
-.submit-row p.deletelink-box {
-    float: left;
-    margin: 0;
-}
-
-.submit-row a.deletelink {
-    display: block;
-    background: #ba2121;
-    border-radius: 4px;
-    padding: 10px 15px;
-    height: 15px;
-    line-height: 15px;
-    color: #fff;
-}
-
-.submit-row a.deletelink:focus,
-.submit-row a.deletelink:hover,
-.submit-row a.deletelink:active {
-    background: #a41515;
-}
-
-/* CUSTOM FORM FIELDS */
-
-.vSelectMultipleField {
-    vertical-align: top;
-}
-
-.vCheckboxField {
-    border: none;
-}
-
-.vDateField, .vTimeField {
-    margin-right: 2px;
-    margin-bottom: 4px;
-}
-
-.vDateField {
-    min-width: 6.85em;
-}
-
-.vTimeField {
-    min-width: 4.7em;
-}
-
-.vURLField {
-    width: 30em;
-}
-
-.vLargeTextField, .vXMLLargeTextField {
-    width: 48em;
-}
-
-.flatpages-flatpage #id_content {
-    height: 40.2em;
-}
-
-.module table .vPositiveSmallIntegerField {
-    width: 2.2em;
-}
-
-.vTextField {
-    width: 20em;
-}
-
-.vIntegerField {
-    width: 5em;
-}
-
-.vBigIntegerField {
-    width: 10em;
-}
-
-.vForeignKeyRawIdAdminField {
-    width: 5em;
-}
-
-/* INLINES */
+/* EDIT INLINE */
 
 .inline-group {
-    padding: 0;
-    margin: 0 0 30px;
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  border-top: 2px solid #ddd;
+  margin: 5px -15px;
+  padding: 0 15px;
+  position: relative;
+}
+.inline-group h2 {
+  background: #f5f5f5;
+  margin: 0 -15px;
+  padding: 5px 15px;
+}
+.inline-group h3 {
+  background: #d9edf7;
+  border-bottom: 1px solid #bce8f1;
+  border-top: 1px solid #bce8f1;
+  margin: 0 -15px 5px;
+  overflow: auto;
+  padding: 7px 15px 5px;
+}
+.inline-group h3 input,
+.inline-group h3 label {
+  margin: 0;
+}
+.inline-group h3 .btn-group {
+  margin-left: 10px;
+  margin-top: -10px;
+}
+.inline-group .btn {
+  border: 1px solid #bce8f1;
+}
+.inline-group .btn:hover {
+  background: #f4f4f4;
+}
+.inline-group .delete input {
+  position: relative;
+  top: 2px;
+}
+.inline-group .delete {
+  padding: 0;
+}
+.inline-group .btn label {
+  font-weight: normal;
+  padding: 5px 6px 2px 0;
+}
+.inline-group .btn label:hover {
+  color: #d9534f;
+  cursor: pointer;
+}
+.inline-group .btn input {
+  margin-left: 6px;
+}
+.inline-group a.btn {
+  padding: 5px 6px 2px;
+}
+.inline-group a.btn:hover {
+  color: #428bca;
+}
+.inline-group .add-row {
+  margin: 5px 0;
+  float: right;
+}
+.inline-group .empty-form {
+  display: none;
 }
 
-.inline-group thead th {
-    padding: 8px 10px;
+.inline-group._tabular {
+  padding: 0;
+  overflow: auto;
+}
+.inline-group .tabular h2 {
+  margin: 0;
+}
+.inline-group .tabular tr td:first-child,
+.inline-group .tabular tr th:first-child {
+  padding-left: 15px;
+}
+.inline-group .tabular thead th {
+  background: #d9edf7;
+  border-bottom: 1px solid #bce8f1 !important;
+  /*border-top: 1px solid #bce8f1;*/
+}
+.inline-group .tabular td.original {
+  max-width: 200px;
+  overflow: hidden;
+  word-wrap: break-word;;
+}
+.inline-group td.original p {
+  margin: 0;
+}
+.inline-group .tabular .form-row {
+  position: unset;
+  margin: 0;
+  min-width: 150px;
+}
+.inline-group .tabular .form-row > div {
+  position: relative;
+}
+.inline-group .tabular .row1 {
+  background: #fff;
+}
+.inline-group .add-row {
+  float: none;
+  text-align: right;
+}
+.inline-group .tabular .table {
+  margin: 0;
+}
+.inline-group .tabular .delete {
+  padding: 8px;
+}
+.tabular .form-row .related-lookup {
+  right: 5px;
+  top: 5px;
+}
+.inline-group .checkbox input {
+  margin: 0;
 }
 
-.inline-group .aligned label {
-    width: 160px;
+/* Calendar widget */
+
+p.datetime {
+  color: #666;
+  white-space: nowrap;
+}
+p.datetime input {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  color: #444;
+  height: 24px;
+  margin: 2px;
+  padding: 2px;
+  text-align: center;
+  width: 95px;
+}
+p.datetime span.vTimeField,
+p.datetime span.datetimeshortcuts {
+  background: #fff;
+  border: 1px solid #eee;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  display: inline-block;
+  height: 24px;
+  line-height: inherit;
+  margin-left: -7px;
+  padding: 1px 4px 4px 0;
+  position: relative;
 }
 
-.inline-related {
-    position: relative;
+.clockbox,
+.calendarbox {
+  background: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  left: 0 !important;
+  overflow: auto;
+  padding-top: 20px;
+  position: fixed !important;
+  right: 0;
+  top: 0 !important;
+  z-index: 9999;
+}
+.clockbox h2,
+.clockbox ul,
+.clockbox .calendar-cancel,
+.calendarbox div:first-child,
+.calendarbox .calendar-shortcuts,
+.calendarbox .calendar-cancel,
+.calendarbox .calendar {
+  background: #fff;
+  width: 500px;
+  margin: 0 auto;
+  padding: 0;
 }
 
-.inline-related h3 {
-    margin: 0;
-    color: #666;
-    padding: 5px;
-    font-size: 13px;
-    background: #f8f8f8;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+.clockbox h2,
+.calendarbox div:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 0 30px;
+}
+.clockbox .calendar-cancel,
+.calendarbox .calendar-cancel {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.calendarbox p {
+  margin: 0;
+}
+.calendarbox table {
+  width: 100%;
+}
+.calendarbox table th,
+.calendarbox table td {
+  padding: 5px;
+  text-align: center;
+}
+.calendarbox table th {
+  border-bottom: 1px solid #ccc;
+}
+.calendarbox table tr:nth-child(2n+1) td {
+  background: #f9f9f9;
+}
+.calendarbox caption {
+  margin-top: -17px;
+  padding: 0 45px;
+  text-align: center;
+}
+.calendarbox .calendarnav-next {
+  float: right;
 }
 
-.inline-related h3 span.delete {
-    float: right;
+.calendar a {
+  display: block;
+}
+.calendar-cancel,
+.calendar-shortcuts {
+  color: #ccc;
+  padding: 2px;
+  text-align: center;
 }
 
-.inline-related h3 span.delete label {
-    margin-left: 2px;
-    font-size: 11px;
+.calendar-shortcuts {
+  font-size: 12px;
+}
+.calendar-cancel a,
+.calendar-shortcuts a {
+  font-size: 14px;
+}
+.calendar-cancel a {
+  display: block;
+  border-top: 1px solid #eee;
+  padding: 3px;
 }
 
-.inline-related fieldset {
-    margin: 0;
-    background: #fff;
-    border: none;
-    width: 100%;
+.clockbox .timelist {
+  list-style: none;
+  padding: 0;
+}
+.clockbox .timelist a {
+  display: block;
+  padding: 5px;
+  text-align: center;
+}
+.clockbox h2 {
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  padding: 5px;
+  text-align: center;
+}
+.clockbox .calendar-cancel {
+  padding: 10px 0 0;
 }
 
-.inline-related fieldset.module h3 {
-    margin: 0;
-    padding: 2px 5px 3px 5px;
-    font-size: 11px;
-    text-align: left;
-    font-weight: bold;
-    background: #bcd;
-    color: #fff;
-}
-
-.inline-group .tabular fieldset.module {
-    border: none;
-}
-
-.inline-related.tabular fieldset.module table {
-    width: 100%;
-}
-
-.last-related fieldset {
-    border: none;
-}
-
-.inline-group .tabular tr.has_original td {
-    padding-top: 2em;
-}
-
-.inline-group .tabular tr td.original {
-    padding: 2px 0 0 0;
-    width: 0;
-    _position: relative;
-}
-
-.inline-group .tabular th.original {
-    width: 0px;
-    padding: 0;
-}
-
-.inline-group .tabular td.original p {
-    position: absolute;
-    left: 0;
-    height: 1.1em;
-    padding: 2px 9px;
-    overflow: hidden;
-    font-size: 9px;
-    font-weight: bold;
-    color: #666;
-    _width: 700px;
-}
-
-.inline-group ul.tools {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.inline-group ul.tools li {
-    display: inline;
-    padding: 0 5px;
-}
-
-.inline-group div.add-row,
-.inline-group .tabular tr.add-row td {
-    color: #666;
-    background: #f8f8f8;
-    padding: 8px 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.inline-group .tabular tr.add-row td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.inline-group ul.tools a.add,
-.inline-group div.add-row a,
-.inline-group .tabular tr.add-row td a {
-    background: url(../img/icon-addlink.svg) 0 1px no-repeat;
-    padding-left: 16px;
-    font-size: 12px;
-}
-
-.empty-form {
+@media (max-width: 767px) {
+  .clockbox h2,
+  .clockbox ul,
+  .clockbox .calendar-cancel,
+  .calendarbox div:first-child,
+  .calendarbox .calendar-shortcuts,
+  .calendarbox .calendar-cancel,
+  .calendarbox .calendar {
+    width: 90%;
+  }
+  .form-expand {
     display: none;
-}
-
-/* RELATED FIELD ADD ONE / LOOKUP */
-
-.add-another, .related-lookup {
-    margin-left: 5px;
-    display: inline-block;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    background-size: 14px;
-}
-
-.add-another {
-    width: 16px;
-    height: 16px;
-    background-image: url(../img/icon-addlink.svg);
-}
-
-.related-lookup {
-    width: 16px;
-    height: 16px;
-    background-image: url(../img/search.svg);
-}
-
-form .related-widget-wrapper ul {
-    display: inline-block;
-    margin-left: 0;
+  }
+  .form-fields {
+    padding: 0;
+  }
+  .form-fields .panel {
+    margin-bottom: 0;
+  }
+  .form-buttons {
     padding-left: 0;
+    padding-bottom: 10px;
+  }
+  .form-buttons .affix {
+    position: relative;
+    margin-right: 0;
+  }
+  .form-buttons.contracted .affix {
+    right: 0;
+  }
 }
 
-.clearable-file-input input {
-    margin-top: 0;
+@media (max-width: 992px) {
+  .selector .selector-available,
+  .selector .selector-chooser,
+  .selector .selector-chosen {
+    float: none;
+    width: 100%;
+  }
+  .selector .selector-chooser {
+    border: 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    left: 0;
+    padding: 10px;
+    position: relative;
+  }
+  .selector .selector-chooser > li {
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+  }
 }
