@@ -25,7 +25,9 @@ SECRET_KEY = '3h+yg_vtf7vsyj!p00(usdo5$cv#d2bdxn9s57ove%s#(=dh^n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+        'www.ehcoblog.ml',
+]
 
 
 # Application definition
