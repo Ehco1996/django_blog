@@ -97,3 +97,6 @@ class Post(models.Model):
     #这个表达式之后的参数pk 会被后面传入的参数pk替换，如果post的id是255，那么该函数返回post/255/ 从而生成自己的url
     def get_absolute_url(self):
         return reverse('blog:detail',kwargs={'pk':self.pk})
+    
+    class Meta:
+        ordering = ['-created_time']
