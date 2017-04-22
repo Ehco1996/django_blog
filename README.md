@@ -10,4 +10,5 @@
 ### day06 恢复更新  增加最基本的评论功能，并修复侧边栏bug
 ### day07 增加blog的bmg ，并实现用js按钮和bootstrap 布局开关
 ### day08 尝试使用畅言，失败。。。需要先部署备案才能使用，正在研究 uwsgi +nginx 上线中，vps解决Python版本问题，
-### day09  够买域名 www.ehcoblog.ml 并使用cloudxns云解析。初步将本地网站迁移至vps
+### day09  购买域名 www.ehcoblog.ml 并使用cloudxns云解析。初步将本地网站迁移至vps
+### day10  1. 弃用畅言，不得不说多说倒闭了是有理由的，这个东西不好商业化，没钱赚，服务器就垃圾，垃圾就不想用，不想用就没广告，没广告就更垃圾啊！ 改用友言。 2. 排除一些git文件
