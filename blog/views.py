@@ -24,6 +24,7 @@ def detail(request, pk):
         'markdown.extensions.codehilite',
         'markdown.extensions.toc',
     ])
+    '''
     # 生成 评论表单的实例
     form = CommentForm
     comment_list = post.comment_set.all()
@@ -31,8 +32,13 @@ def detail(request, pk):
         'post': post,
         'form': form,
         'comment_list': comment_list,
+        'count':count,
     }
-    return render(request, 'blog/detail.html', context=context)
+    '''
+    post.count = post.count + 1
+    post.save()
+
+    return render(request, 'blog/detail.html', context={'post': post})
 
 
 def archives(request, year, month):
