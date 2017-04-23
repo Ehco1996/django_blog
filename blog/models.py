@@ -53,9 +53,13 @@ class Post(models.Model):
     分类 categroy
     标签 tag
     作者 author
+    阅读量 count
     '''
     title = models.CharField(max_length=70)
-
+    
+    #count 是一个正整数类型，用于记录文章的阅读量。这里使得他自动创建
+    count = models.PositiveIntegerField(auto_created=True,default=0)
+    
     #存储文章正文，用TextField类型来存储长文本
     body = models.TextField()
 

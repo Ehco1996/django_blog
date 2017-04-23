@@ -17,6 +17,9 @@
 			<span class="post-author"><a href="#">{{ post.author }} </a></span>
 
 			<span class="comments-link"><a href="#">4 Comments</a></span>
+			
+			<a> ·阅读量 ： {{ post.count }}</a>
+			
 		</div>
 	</header>
 
@@ -25,6 +28,7 @@
 	</div>
 </article>
 
+<<<<<<< HEAD
 <!-- UY BEGIN -->
 <div id="uyan_frame"></div>
 <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2131670"></script>
@@ -63,4 +67,17 @@
 	</div>
 </form>
 -->
+=======
+<div class="changyan">
+<!--PC版-->
+<div id="SOHUCS" ></div>
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cysX5bI3e',
+conf: 'prod_4e518ffe3b210926e2e71f4cff373b6f'
+});
+</script>
+</div>
+>>>>>>> develop
 {% endblock main%}
