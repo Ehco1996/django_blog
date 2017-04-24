@@ -60,6 +60,9 @@ class Post(models.Model):
     #count 是一个正整数类型，用于记录文章的阅读量。这里使得他自动创建
     count = models.PositiveIntegerField(auto_created=True,default=0)
     
+    #图片类型，用来存放上传图片的文件地址
+    headimage = models.ImageField(upload_to='head_pic/',blank=None)
+    
     #存储文章正文，用TextField类型来存储长文本
     body = models.TextField()
 
