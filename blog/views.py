@@ -14,7 +14,7 @@ from .models import Category, Post
 def index(request):
 
     # 设置每页显示文章的数量
-    limit = 5
+    limit = 2
     post_list = Post.objects.all()
     # 实例化一个分页对象
     paginator = Paginator(post_list, limit)
@@ -22,13 +22,13 @@ def index(request):
     page = request.GET.get('page')
     
     try:
-        post_list = paginator.page(page)
+        contacts = paginator.page(page)
     except PageNotAnInteger:  # 如果页码不是个整数
-        post_list = paginator.page(1)
+        contacts = paginator.page(1)
     except EmptyPage:  # 如果页码太大，没有相应的记录
-        post_list = paginator.page(paginator.num_pages)  # 取最后一页的记录
+        contacts = paginator.page(paginator.num_pages)  # 取最后一页的记录
 
-    return render(request, 'blog/index.html', context={'post_list': post_list})
+    return render(request, 'blog/index.html', context={'contacts':contacts})
 
 
 def detail(request, pk):

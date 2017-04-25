@@ -1,22 +1,22 @@
-{% extends 'blog/base.html' %} {% block main %} {% for post in post_list %}
+{% extends 'blog/base.html' %} {% block main %} {% for contact in contacts %}
 <article class="post post-1">
     <header class="entry-header">
         <h1 class="entry-title">
-            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            <a href="{{ contact.get_absolute_url }}">{{ contact.title }}</a>
         </h1>
         </h1>
         <div class="entry-meta">
-            <span class="post-category"><a href="#">{{ post.category.name }} </a></span>
+            <span class="post-category"><a href="#">{{ contact.category.name }} </a></span>
 
             <span class="post-date">
       <a href="#">
-        <time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }} </time>
+        <time class="entry-date" datetime="{{ post.created_time }}">{{ contact.created_time }} </time>
       </a>
     </span>
 
-            <span class="post-author"><a href="#">{{ post.author }} </a></span>
+            <span class="post-author"><a href="#">{{ contact.author }} </a></span>
 
-            <span class="comments-link"><a href="#"> read: {{ post.count }}</a></span>
+            <span class="comments-link"><a href="#"> read: {{ contact.count }}</a></span>
 
         </div>
     </header>
@@ -26,9 +26,9 @@
     <div class="entry-content clearfix">
         <div class="read-more cl-effect-14">
             
-                <p class="text-center lead" > {{ post.excerpt }} </p>
+                <p class="text-center lead" > {{ contact.excerpt }} </p>
             
-            <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+            <a href="{{ contact.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
         </div>
     </div>
 </article>
@@ -41,15 +41,15 @@
     <ul>
 
         {% if post_list.has_previous %}
-        <li><a href="?page={{ post_list.previous_page_number }}">上一页</a></li>
+        <li><a href="?page={{ contacts.previous_page_number }}">上一页</a></li>
         {% endif %}
 
         <li>
-            当前页: {{ post_list.number }}总页:{{ post_list.paginator.num_pages }}
+            当前页: {{ contacts.number }}总页:{{ contacts.paginator.num_pages }}
         </li>
 
-        {% if post_list.has_next %}
-        <li><a href="?page={{ post_list.next_page_number }}">下一页</a></li>
+        {% if contacts.has_next %}
+        <li><a href="?page={{ contacts.next_page_number }}">下一页</a></li>
         {% endif %}
 
     </ul>
