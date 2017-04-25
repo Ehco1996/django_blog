@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, render, HttpResponse
-
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 import markdown
 
 from .forms import AddForm, CommentForm
@@ -10,7 +12,22 @@ from .models import Category, Post
 
 
 def index(request):
+
+    # 设置每页显示文章的数量
+    limit = 5
     post_list = Post.objects.all()
+    # 实例化一个分页对象
+    pagunator = Paginator(post_list, limit)
+    # 获取页码
+    page = request.GET.get('page')
+    
+    try:
+        post_list = pagunator.page(page)
+    except PageNotAnInteger:  # 如果页码不是个整数
+        post_list = pagunator.page(1)
+    except EmptyPage:  # 如果页码太大，没有相应的记录
+        post_list = paginator.page(paginator.num_pages)  # 取最后一页的记录
+
     return render(request, 'blog/index.html', context={'post_list': post_list})
 
 
@@ -19,26 +36,44 @@ def detail(request, pk):
     这里pk参数和上次编写的一样，都是通过主键id来获取文章
     '''
     post = get_object_or_404(Post, pk=pk)
+     
+    # 统计阅读数量
+    post.count = post.count + 1
+    post.save()
+
+   
+    
     post.body = markdown.markdown(post.body, extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
         'markdown.extensions.toc',
     ])
-    '''
-    # 生成 评论表单的实例
-    form = CommentForm
-    comment_list = post.comment_set.all()
+
+   
+    
+    # 获取所有文章数量
+    post_count = len(Post.objects.all())
+
+    # 获取上下文的
+    if post.pk == 1:
+        pre_post = {'title': '没有了',
+                    'get_absolute_ul': '', }
+    else:
+        pre_post = get_object_or_404(Post, pk=int(pk) - 1)
+
+    if post.pk == post_count:
+        next_post = {'title': '没有了',
+                     'get_absolute_ul': '', }
+    else:
+        next_post = get_object_or_404(Post, pk=int(pk) + 1)
+
     context = {
         'post': post,
-        'form': form,
-        'comment_list': comment_list,
-        'count':count,
+        'pre_post': pre_post,
+        'next_post': next_post,
     }
-    '''
-    post.count = post.count + 1
-    post.save()
 
-    return render(request, 'blog/detail.html', context={'post': post})
+    return render(request, 'blog/detail.html', context=context)
 
 
 def archives(request, year, month):
@@ -51,16 +86,3 @@ def category(request, pk):
     cate = get_object_or_404(Category, pk=pk)
     post_list = Post.objects.filter(category=cate)
     return render(request, 'blog/index.html', context={'post_list': post_list})
-
-
-def test(request):
-    if request.method == 'POST':
-        form = AddForm(request.POST)
-
-        if form.is_valid():
-            a = form.cleaned_data['a']
-            b = form.cleaned_data['b']
-            return HttpResponse(int(a) + int(b))
-    else:
-        form = AddForm()
-    return render(request, 'blog/test.html', {'form': form})

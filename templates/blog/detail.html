@@ -16,20 +16,35 @@
 
 			<span class="post-author"><a href="#">{{ post.author }} </a></span>
 
-			<span class="comments-link"><a href="#">4 Comments</a></span>
-			
-			<a> ·阅读量 ： {{ post.count }}</a>
-			
+			<span class="comments-link"><a href="#"> read: {{ post.count }}</a></span>
+
 		</div>
 	</header>
 
-	<div class="entry-content clearfix">
-		<img src='/media/{{ post.headimage }}' alt='首页图'>
-		{{ post.body|safe }}
+
+	<div class="entry-content clearfix typo ">
+		<div class="head-img img-responsive">
+			<br>
+			<img class='img-thumbnail' src="{{ post.headimage.url }}" alt='文章配图' width="500" height="300">
+		</div>
+		<br>
+
+		<div class="body-text">
+			{{ post.body|safe }}
+		</div>
+
 
 	</div>
 </article>
 
+<ul class="上下文关联">
+	<li>
+		<a href="{{ pre_post.get_absolute_url }}"> <strong>上一篇 ：{{ pre_post.title }}</strong> </a>
+	</li>
+	<li>
+		<a href="{{ next_post.get_absolute_url }}"> <strong> 下一篇 ：{{ next_post.title }} </strong></a>
+	</li>
+</ul>
 
 <!-- UY BEGIN -->
 <div id="uyan_frame"></div>

@@ -61,17 +61,23 @@ class Post(models.Model):
     count = models.PositiveIntegerField(auto_created=True,default=0)
     
     #图片类型，用来存放上传图片的文件地址
-    headimage = models.ImageField(upload_to='head_pic/',blank=None)
+    headimage = models.ImageField(upload_to='head_pic/',default='no-img')
     
     #存储文章正文，用TextField类型来存储长文本
     body = models.TextField()
 
+    #存储文章首页图
+    headimage = models.ImageField(
+        upload_to='headimg/',
+        default='headimg/no-img.jpg',
+    )
+    
     #这两个列表用来存储时间类型 所以用DateTimeField
     created_time = models.DateTimeField()
     modified_time = models.DateField()
 
     #这个列用来存储文章的摘要，charfied字段默认是不允许为空的，设置blank属性之后，允许空标题
-    excerpt = models.CharField(max_length=200,blank=True)
+    excerpt = models.CharField(max_length=200,default='暂无摘要')
 
     #这是分类的标签
     #分类的标签已经在上面定义过一个专门存放标签的表了
@@ -102,8 +108,14 @@ class Post(models.Model):
     #由于我们在上面用app_name=‘bolg’ 告诉了django 这个eurl模块是属于blog的，
     #因此django能找到blog应用下views里的detail函数，从而去试图解析对应的正则 post/(?P<pk>[0-9]+) 
     #这个表达式之后的参数pk 会被后面传入的参数pk替换，如果post的id是255，那么该函数返回post/255/ 从而生成自己的url
+    
+    
     def get_absolute_url(self):
         return reverse('blog:detail',kwargs={'pk':self.pk})
     
+   
+            
+    
     class Meta:
         ordering = ['-created_time']
+

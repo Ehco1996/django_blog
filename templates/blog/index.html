@@ -16,17 +16,44 @@
 
             <span class="post-author"><a href="#">{{ post.author }} </a></span>
 
-            <span class="comments-link"><a href="#">4 Comments</a></span>
+            <span class="comments-link"><a href="#"> read: {{ post.count }}</a></span>
 
-            <a> ·阅读量 ： {{ post.count }}</a>
         </div>
     </header>
+    
+       
+
     <div class="entry-content clearfix">
         <div class="read-more cl-effect-14">
+            
+                <p class="text-center lead" > {{ post.excerpt }} </p>
+            
             <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
         </div>
     </div>
 </article>
 {% empty %}
 <div class="no-post"> 暂时还没有发布文章！</div>
-{% endfor%} {% endblock main %}
+{% endfor%}
+
+
+<div class='pagination'>
+    <ul>
+
+        {% if post_list.has_previous %}
+        <li><a href="?page={{ post_list.previous_page_number }}">上一页</a></li>
+        {% endif %}
+
+        <li>
+            当前页: {{ post_list.number }}总页:{{ post_list.paginator.num_pages }}
+        </li>
+
+        {% if post_list.has_next %}
+        <li><a href="?page={{ post_list.next_page_number }}">下一页</a></li>
+        {% endif %}
+
+    </ul>
+</div>
+
+
+{% endblock main %}
