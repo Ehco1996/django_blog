@@ -74,7 +74,7 @@ class Post(models.Model):
     modified_time = models.DateField()
 
     #这个列用来存储文章的摘要，charfied字段默认是不允许为空的，设置blank属性之后，允许空标题
-    excerpt = models.CharField(max_length=200,blank=True)
+    excerpt = models.CharField(max_length=200,default='暂无摘要')
 
     #这是分类的标签
     #分类的标签已经在上面定义过一个专门存放标签的表了
