@@ -28,4 +28,40 @@
 </article>
 {% empty %}
 <div class="no-post"> 暂时还没有发布文章！</div>
-{% endfor%} {% endblock main %}
+{% endfor%} 
+<!--
+<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+-->
+
+<div class='pagination'>
+    <span class="step-links">
+        {% if post_list.has_previous %}
+            <a href="?page={{ post_list.previous_page_number }}">上一页</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ post_list.number }} of {{ post_list.paginator.num_pages }}.
+        </span>
+
+        {% if post_list.has_next %}
+            <a href="?page={{ post_list.next_page_number }}">下一页</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock main %}

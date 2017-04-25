@@ -105,8 +105,14 @@ class Post(models.Model):
     #由于我们在上面用app_name=‘bolg’ 告诉了django 这个eurl模块是属于blog的，
     #因此django能找到blog应用下views里的detail函数，从而去试图解析对应的正则 post/(?P<pk>[0-9]+) 
     #这个表达式之后的参数pk 会被后面传入的参数pk替换，如果post的id是255，那么该函数返回post/255/ 从而生成自己的url
+    
+    
     def get_absolute_url(self):
         return reverse('blog:detail',kwargs={'pk':self.pk})
     
+   
+            
+    
     class Meta:
         ordering = ['-created_time']
+

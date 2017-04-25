@@ -11,5 +11,4 @@ urlpatterns = [
     url(r'^archives/(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/$',
         views.archives, name='archives'),
     url(r'^category/(?P<pk>[0-9]+)/$', views.category, name='category'),
-    url(r'^test/$', views.test, name='test'),   
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
