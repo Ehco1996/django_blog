@@ -17,14 +17,14 @@ def index(request):
     limit = 5
     post_list = Post.objects.all()
     # 实例化一个分页对象
-    pagunator = Paginator(post_list, limit)
+    paginator = Paginator(post_list, limit)
     # 获取页码
     page = request.GET.get('page')
     
     try:
-        post_list = pagunator.page(page)
+        post_list = paginator.page(page)
     except PageNotAnInteger:  # 如果页码不是个整数
-        post_list = pagunator.page(1)
+        post_list = paginator.page(1)
     except EmptyPage:  # 如果页码太大，没有相应的记录
         post_list = paginator.page(paginator.num_pages)  # 取最后一页的记录
 
