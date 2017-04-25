@@ -63,6 +63,12 @@ class Post(models.Model):
     #存储文章正文，用TextField类型来存储长文本
     body = models.TextField()
 
+    #存储文章首页图
+    headimage = models.ImageField(
+        upload_to='headimg/',
+        default='headimg/no-img.jpg',
+    )
+    
     #这两个列表用来存储时间类型 所以用DateTimeField
     created_time = models.DateTimeField()
     modified_time = models.DateField()

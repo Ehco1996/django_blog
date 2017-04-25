@@ -1,5 +1,6 @@
 from django.conf.urls import url
-
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 # 说明该模块是属于blog应用的
@@ -11,4 +12,4 @@ urlpatterns = [
         views.archives, name='archives'),
     url(r'^category/(?P<pk>[0-9]+)/$', views.category, name='category'),
     url(r'^test/$', views.test, name='test'),   
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
