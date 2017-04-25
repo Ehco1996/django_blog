@@ -35,9 +35,15 @@
 	</div>
 </article>
 
-<div 页教导航>
 
-</div>
+<ul class="上下文关联">
+	<li>
+		<a href="{{ pre_post.get_absolute_url }}"> <strong>上一篇 ：{{ pre_post.title }}</strong> </a>
+	</li>
+	<li>
+		<a href="{{ next_post.get_absolute_url }}"> <strong> 下一篇 ：{{ next_post.title }} </strong></a>
+	</li>
+</ul>
 
 
 

@@ -12,30 +12,18 @@ from .models import Category, Post
 
 
 def index(request):
-    '''
-    limit = 3  # 每页显示的记录数
-    topics = Topic.objects.all()
-    paginator = Paginator(topics, limit)  # 实例化一个分页对象
 
-    page = request.GET.get('page')  # 获取页码
-    try:
-        topics = paginator.page(page)  # 获取某页对应的记录
-    except PageNotAnInteger:  # 如果页码不是个整数
-        topics = paginator.page(1)  # 取第一页的记录
-    except EmptyPage:  # 如果页码太大，没有相应的记录
-        topics = paginator.page(paginator.num_pages)  # 取最后一页的记录
-
-    return render_to_response('index.html', {'topics': topics})
-    '''
+    # 设置每页显示文章的数量
     limit = 5
     post_list = Post.objects.all()
-    pagunator = Paginator(post_list,limit) #实例化一个分页对象
-
-    page = request.GET.get('page') #获取页码
+    # 实例化一个分页对象
+    pagunator = Paginator(post_list, limit)
+    # 获取页码
+    page = request.GET.get('page')
 
     try:
         post_list = pagunator.page(page)
-    except PageNotAnInteger: #如果页码不是个整数
+    except PageNotAnInteger:  # 如果页码不是个整数
         post_list = pagunator.page(1)
     except EmptyPage:  # 如果页码太大，没有相应的记录
         post_list = paginator.page(paginator.num_pages)  # 取最后一页的记录
@@ -54,10 +42,49 @@ def detail(request, pk):
         'markdown.extensions.toc',
     ])
 
+    # 统计阅读数量
     post.count = post.count + 1
     post.save()
 
-    return render(request, 'blog/detail.html', context={'post': post})
+    
+    #获取所有文章数量
+    post_count = len(Post.objects.all())
+    
+    #获取上下文的
+    if post.pk == 1:
+        pre_post = {'title': '没有了',
+                    'get_absolute_ul': '', }
+    else:
+        pre_post = get_object_or_404(Post, pk=int(pk) - 1)
+    
+    if post.pk == post_count:
+        next_post = {'title': '没有了',
+                    'get_absolute_ul': '', }
+    else:
+        next_post = get_object_or_404(Post, pk=int(pk) + 1)
+    
+    
+    
+    
+    '''
+        pre_page = get_object_or_404(Post, pk=int(pk) - 1)
+    else:
+        pre_page = {'title': '没有了',
+                    'get_absolute_ul': '', }
+    
+        next_page = get_object_or_404(Post, pk=int(pk) + 1)
+    else:
+        next_page = {'title': '没有了',
+                     'get_absolute_ul': '',
+                     }
+    '''
+    context = {
+        'post': post,
+        'pre_post': pre_post,
+        'next_post': next_post,
+    }
+
+    return render(request, 'blog/detail.html', context=context)
 
 
 def archives(request, year, month):
