@@ -1,7 +1,6 @@
-from django.shortcuts import get_object_or_404, render, HttpResponse
-from django.core.paginator import Paginator
-from django.core.paginator import EmptyPage
-from django.core.paginator import PageNotAnInteger
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.shortcuts import HttpResponse, get_object_or_404, render
+
 import markdown
 
 from .forms import AddForm, CommentForm
@@ -77,12 +76,12 @@ def detail(request, pk):
 
 
 def archives(request, year, month):
-    post_list = Post.objects.filter(
+    contacts = Post.objects.filter(
         created_time__year=year, created_time__month=month)
-    return render(request, 'blog/index.html', context={'post_list': post_list})
+    return render(request, 'blog/index.html', context={'contacts': contacts})
 
 
 def category(request, pk):
     cate = get_object_or_404(Category, pk=pk)
-    post_list = Post.objects.filter(category=cate)
-    return render(request, 'blog/index.html', context={'post_list': post_list})
+    contacts = Post.objects.filter(category=cate)
+    return render(request, 'blog/index.html', context={'contacts': contacts})
