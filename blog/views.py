@@ -14,7 +14,7 @@ from .models import Category, Post
 def index(request):
 
     # 设置每页显示文章的数量
-    limit = 2
+    limit = 5
     post_list = Post.objects.all()
     # 实例化一个分页对象
     paginator = Paginator(post_list, limit)
