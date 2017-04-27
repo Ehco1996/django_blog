@@ -85,3 +85,6 @@ def category(request, pk):
     cate = get_object_or_404(Category, pk=pk)
     contacts = Post.objects.filter(category=cate)
     return render(request, 'blog/index.html', context={'contacts': contacts})
+
+def aboutme(request):
+    return render(request,'blog/about.html',context=None)

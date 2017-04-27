@@ -1,0 +1,68 @@
+ {% extends 'blog/base.html'%} {% block main %}{% load staticfiles %}
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+
+			<main class="col-md-8 main-content">
+
+
+
+				<article class="post page">
+
+					<header class="post-head">
+						<h1 class="post-title">关于我 ： </h1>
+						<br/>
+
+						<img width="10%" class="img-circle col-md-2" src="{% static 'img/me.png' %}">
+
+
+					</header>
+					<hr />
+					<section class="post-content">
+
+						<br>
+						<blockquote>
+							<br>
+							<p> Ehco，文科男，本科在读，正在努力转型的coder，<br/>目标是去家门口的软件园谋求一份工作。<br /> 自学Python编程，目前主攻Web开发。熟悉网站部署等相关操作
+								<footer class="blockquote-reverse">嘿,别吹牛了好吗？</footer>
+							</p>
+						</blockquote>
+						<ul>
+							<li>
+								<p class="lead">自己搭的梯子/游戏加速网站 : <a class="text-primary" href="http://www.ehcospeed.ml ">EhcoSpeed</a></p>
+							</li>
+							<li>
+								<p class="lead"><strong>微信公众号 :</strong> findyourownway</p>
+							</li>
+							<p class="lead "> 扫描下方二维码获取免费ss账号~</p>
+							<img width="60%" src="{% static 'img/qrcode.jpg' %}">
+						</ul>
+
+						<br>
+
+
+						<hr />
+
+						<h2 class="post-head"> 关于blog :</h2>
+						<ul>
+							<li>
+								前端框架： Bootstrap
+							</li>
+							<li>
+								后端框架： Django
+							</li>
+							<li>
+								BGM： 平穏との境界線
+							</li>
+						</ul>
+
+					</section>
+
+				</article>
+
+			</main>
+
+
+
+			{% endblock main%}
