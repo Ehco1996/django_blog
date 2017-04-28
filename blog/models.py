@@ -84,7 +84,7 @@ class Post(models.Model):
     #这里需要通过外键的形式与之前的表相连接
     #我们规定一篇文章只能对应一个分类，但是一个分来下能有很多篇文章，这就是多对一的关系（ForeignKey
     #但是对于标签来说，
-    #一个标签下可以有多个文章
+    #一个标签下可以有多个文章 
     #一个文章也可以有多个标签
     #所以我们用（ManyToMany）多对多的方式来连接
     #文档：https://docs.djangoproject.com/en/1.10/topics/db/models/#relationships

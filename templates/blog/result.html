@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %} {% block main %}
+{% if error_msg %}
+    <h1 class="info">{{ error_msg }}</h1>
+{% endif %}
+{% for post in post_list %}
+    <article class="post post-1">
+    <header class="entry-header">
+        <h1 class="entry-title">
+            <a href="{{ contact.get_absolute_url }}">{{ post.title }}</a>
+        </h1>
+        </h1>
+        <div class="entry-meta">
+            <span class="post-category"><a href="#">{{ post.category.name }} </a></span>
+
+            <span class="post-date">
+      <a href="#">
+        <time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }} </time>
+      </a>
+    </span>
+
+            <span class="post-author"><a href="#">{{ post.author }} </a></span>
+
+            <span class="comments-link"><a href="#"> read: {{ post.count }}</a></span>
+
+        </div>
+    </header>
+    
+       
+
+    <div class="entry-content clearfix">
+        <div class="read-more cl-effect-14">
+            
+                <p class="text-center lead" > {{ post.excerpt }} </p>
+            
+            <a href="{{ contact.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+        </div>
+    </div>
+</article>
+{% empty %}
+    <h1 class="lead">
+        抱歉，没有搜索到你需要的文章
+    </h1>
+{% endfor%}
+{% endblock main%}

@@ -19,7 +19,7 @@ def index(request):
     paginator = Paginator(post_list, limit)
     # 获取页码
     page = request.GET.get('page')
-    
+
     try:
         contacts = paginator.page(page)
     except PageNotAnInteger:  # 如果页码不是个整数
@@ -27,7 +27,7 @@ def index(request):
     except EmptyPage:  # 如果页码太大，没有相应的记录
         contacts = paginator.page(paginator.num_pages)  # 取最后一页的记录
 
-    return render(request, 'blog/index.html', context={'contacts':contacts})
+    return render(request, 'blog/index.html', context={'contacts': contacts})
 
 
 def detail(request, pk):
@@ -35,21 +35,17 @@ def detail(request, pk):
     这里pk参数和上次编写的一样，都是通过主键id来获取文章
     '''
     post = get_object_or_404(Post, pk=pk)
-     
+
     # 统计阅读数量
     post.count = post.count + 1
     post.save()
 
-   
-    
     post.body = markdown.markdown(post.body, extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
         'markdown.extensions.toc',
     ])
 
-   
-    
     # 获取所有文章数量
     post_count = len(Post.objects.all())
 
@@ -86,5 +82,21 @@ def category(request, pk):
     contacts = Post.objects.filter(category=cate)
     return render(request, 'blog/index.html', context={'contacts': contacts})
 
+
 def aboutme(request):
-    return render(request,'blog/about.html',context=None)
+    return render(request, 'blog/about.html', context=None)
+
+
+def search(request):
+    q = request.GET.get('q')
+    error_msg = ''
+
+    if not q:
+        error_msg = "请输入关键词:"
+        return render(request, 'blog/result.html', context={'error_msg': error_msg, })
+    else:
+
+        post_list = Post.objects.filter(title__icontains=q)
+
+        return render(request, 'blog/result.html', context={'errot_msg': error_msg,
+                                                            'post_list': post_list})

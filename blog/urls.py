@@ -12,4 +12,5 @@ urlpatterns = [
         views.archives, name='archives'),
     url(r'^category/(?P<pk>[0-9]+)/$', views.category, name='category'),
     url(r'^about/$',views.aboutme,name='aboutme'),
+    url(r'^search/$',views.search,name='search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
