@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %} {% block main %}
+{% extends 'blog/detailbase.html' %} {% block main %}
 <article class="post post-1">
 	<header class="entry-header">
 		<h1 class="entry-title">
@@ -29,8 +29,10 @@
 		</div>
 		<br>
 
-		<div class="body-text">
+		<div class="body-text" id='needtoc'>
 			{{ post.body|safe }}
+			<br/>
+			<hr/>
 		</div>
 
 
@@ -50,4 +52,6 @@
 <div id="uyan_frame"></div>
 <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2131670"></script>
 <!-- UY END -->
+
+
 {% endblock main%}
