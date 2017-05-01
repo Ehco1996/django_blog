@@ -1,0 +1,219 @@
+@charset "UTF-8";
+.jupe {
+  font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  color: #333333;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.jupe a {
+  text-decoration: none;
+  color:lightslategray;
+}
+.jupe a:hover {
+  color:darkslategrey;
+}
+.jupe abbr {
+  cursor: help;
+}
+.jupe h1 {
+  font-weight: normal;
+  font-size: 2em;
+  margin: 1.2em 0 0.6em 0;
+}
+.jupe h2 {
+  font-weight: normal;
+  font-size: 1.8em;
+  margin: 1.2em 0 0.6em 0;
+}
+.jupe h3 {
+  font-weight: normal;
+  font-size: 1.6em;
+  margin: 1.2em 0 0.6em 0;
+}
+.jupe h4 {
+  font-weight: normal;
+  font-size: 1.4em;
+  margin: 1.2em 0 0.6em 0;
+}
+.jupe h5 {
+  font-weight: normal;
+  font-size: 1.2em;
+  margin: 1.2em 0 0.6em 0;
+}
+.jupe h6 {
+  font-weight: normal;
+  font-size: 1em;
+  margin: 1.2em 0 0.6em 0;
+}
+.jupe p {
+  margin: 1em 0;
+}
+.jupe tt {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe i {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe b {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe big {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe small {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe em {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe strong {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe dfn {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe kbd {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe cite {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe code {
+  margin: 0 .2em;
+  padding: 0 .2em;
+}
+.jupe tt,
+.jupe kbd {
+  font-family: monospace;
+  background: #f9f9f9;
+}
+.jupe i,
+.jupe em,
+.jupe dfn,
+.jupe cite {
+  font-style: italic;
+}
+.jupe strong,
+.jupe b {
+  font-weight: bold;
+}
+.jupe big {
+  font-size: 1.2em;
+}
+.jupe small {
+  font-size: .9em;
+}
+.jupe code {
+  background: #f9f9f9;
+  padding: .2em .4em;
+}
+.jupe pre {
+  background: #f9f9f9;
+  padding: 1em;
+  overflow: auto;
+  font-size: .9em;
+}
+.jupe pre code {
+  background: transparent;
+}
+.jupe var {
+  font-style: italic;
+}
+.jupe blockquote {
+  padding-left: .8em;
+  margin: 1em .8em;
+  border-left: 4px solid #eeeeee;
+}
+.jupe blockquote small,
+.jupe blockquote cite {
+  font-size: .8em;
+  color: #999999;
+  font-style: normal;
+}
+.jupe blockquote small {
+  font-size: .8em;
+}
+.jupe blockquote small cite {
+  font-size: 1em;
+}
+.jupe q {
+  margin: 0 .2em;
+}
+.jupe q::before {
+  content: "“";
+}
+.jupe q::after {
+  content: "”";
+}
+.jupe del {
+  text-decoration: line-through;
+}
+.jupe ins {
+  text-decoration: none;
+  border-bottom: 1px solid #333333;
+}
+.jupe sub {
+  vertical-align: baseline;
+  font-size: .8em;
+  position: relative;
+  bottom: -.25em;
+  margin: 0 .4em 0 0;
+}
+.jupe sup {
+  vertical-align: baseline;
+  font-size: .8em;
+  position: relative;
+  top: -.25em;
+  margin: 0 .4em 0 0;
+}
+.jupe p img {
+  vertical-align: middle;
+  display: inline;
+  border: none;
+  margin: 0;
+}
+.jupe img {
+  display: block;
+  border: 1px solid #f9f9f9;
+  max-width: 100%;
+  height: auto;
+  margin: 1em 0;
+}
+.jupe table {
+  border: 1px solid #eeeeee;
+  border-collapse: collapse;
+  text-align: center;
+}
+.jupe caption {
+  padding: .2em .6em;
+  border: 1px solid #eeeeee;
+}
+.jupe tr:nth-child(2n) {
+  background: #f9f9f9;
+}
+.jupe th {
+  border-bottom: 1px solid #eeeeee;
+  padding: .2em .6em;
+}
+.jupe td {
+  border-bottom: 1px solid #eeeeee;
+  padding: .2em .6em;
+}
+.jupe ul {
+  list-style-type: square;
+  padding-left: 1.4em;
+}
+.jupe figure {
+  margin: 1em 0;
+}
+
