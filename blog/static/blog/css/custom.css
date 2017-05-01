@@ -111,7 +111,10 @@ figure {
  */
 
 .logo h1 a {
-    color: #000;
+    font-size: 4rem;
+    padding: 2px 6px;
+    border-radius: 9px;
+    border: 3px solid lightgray;
 }
 
 .logo h1 a:hover {
@@ -122,7 +125,8 @@ figure {
 .logo h1 {
 	margin: 0;
 	font-family: 'Lato', sans-serif;
-	font-weight: 300;
+	font-weight: 600;
+	color: lightblue;
 }
 
 /**
