@@ -3,9 +3,10 @@ function playPause() {
     var music_btn = document.getElementById('music_btn2');
     if (music.paused) {
         music.play();
+
     }
     else {
         music.pause();
-    }
-} 
 
+    }
+}

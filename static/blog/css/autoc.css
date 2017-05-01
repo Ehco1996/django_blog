@@ -1,0 +1,220 @@
+@font-face {
+    font-family: "autocjs-icon";
+    /* Icon from icomoon; 10px wide & 10px tall; 2 empty below & 4 above */
+    src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SBTUAAAC8AAAAYGNtYXAWi9QdAAABHAAAAFRnYXNwAAAAEAAAAXAAAAAIZ2x5Zgq29TcAAAF4AAABNGhlYWQEZM3pAAACrAAAADZoaGVhBhUDxgAAAuQAAAAkaG10eASAADEAAAMIAAAAFGxvY2EAKACuAAADHAAAAAxtYXhwAAgAVwAAAygAAAAgbmFtZQ5yJ3cAAANIAAAB2nBvc3QAAwAAAAAFJAAAACAAAwJAAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADpywPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAOAAAAAoACAACAAIAAQAg6cv//f//AAAAAAAg6cv//f//AAH/4xY5AAMAAQAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAACADEARAJTAsAAKwBUAAABIiYnJjQ/AT4BMzIWFxYUDwEGIicmND8BNjQnLgEjIgYPAQYUFxYUBw4BIwciJicmND8BNjIXFhQPAQYUFx4BMzI2PwE2NCcmNDc2MhcWFA8BDgEjARQGDAUtLXoWOR8fORYtLTgKGwoKCjgaGg0gEhIgDXoaGgkJBQwHdR85Fi0tOAobCgoKOBoaDSASEiANehoaCQkKGwotLXoWOR8BMwUFLYEuehYXFxYugC44CQkKGwo4GkoaDQ0NDXoaShoKGwoFBe8XFi6ALjgJCQobCjgaShoNDQ0NehpKGgobCgoKLYEuehYXAAEAAAABAACiToc1Xw889QALBAAAAAAA0XnFFgAAAADRecUWAAAAAAJTAsAAAAAIAAIAAAAAAAAAAQAAA8D/wAAABAAAAAAAAlMAAQAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAACAAAAAoAAMQAAAAAACgAUAB4AmgABAAAABQBVAAIAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADgAAAAEAAAAAAAIABwCfAAEAAAAAAAMADgBLAAEAAAAAAAQADgC0AAEAAAAAAAUACwAqAAEAAAAAAAYADgB1AAEAAAAAAAoAGgDeAAMAAQQJAAEAHAAOAAMAAQQJAAIADgCmAAMAAQQJAAMAHABZAAMAAQQJAAQAHADCAAMAAQQJAAUAFgA1AAMAAQQJAAYAHACDAAMAAQQJAAoANAD4YW5jaG9yanMtaWNvbnMAYQBuAGMAaABvAHIAagBzAC0AaQBjAG8AbgBzVmVyc2lvbiAxLjAAVgBlAHIAcwBpAG8AbgAgADEALgAwYW5jaG9yanMtaWNvbnMAYQBuAGMAaABvAHIAagBzAC0AaQBjAG8AbgBzYW5jaG9yanMtaWNvbnMAYQBuAGMAaABvAHIAagBzAC0AaQBjAG8AbgBzUmVndWxhcgBSAGUAZwB1AGwAYQByYW5jaG9yanMtaWNvbnMAYQBuAGMAaABvAHIAagBzAC0AaQBjAG8AbgBzRm9udCBnZW5lcmF0ZWQgYnkgSWNvTW9vbi4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==) format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+.autocjs-heading {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+
+.autocjs {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-clip: padding-box;
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    border-top: none;
+    border-bottom: none;
+    box-shadow: 0 6px 12px #666;
+    font-family: Arial, 'Courier New', "Helvetica Neue", Helvetica, sans-serif;
+    overflow: visible;
+}
+
+.autocjs-hd {
+    height: 40px;
+    margin: 0 auto;
+    border-bottom: 1px solid #ddd;
+    line-height: 40px;
+    background-color: #f4f5f9;
+    font-family: 'Courier New', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.autocjs-bd {
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    background-color: #FFF;
+    overflow: auto;
+}
+
+/*---滚动条默认显示样式--*/
+.autocjs-bd::-webkit-scrollbar-thumb {
+    background-color: #CCC;
+    height: 50px;
+    outline-offset: -2px;
+    outline: 2px solid #fff;
+    -webkit-border-radius: 4px;
+    border: 2px solid #fff;
+}
+
+/*---鼠标点击滚动条显示样式--*/
+.autocjs-bd::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+    height: 50px;
+    -webkit-border-radius: 4px;
+}
+
+/*---滚动条大小--*/
+.autocjs-bd::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/*---滚动框背景样式--*/
+.autocjs-bd::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    -webkit-border-radius: 0;
+}
+
+.autocjs-chapters {
+    margin: 0 auto;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+.autocjs-subjects {
+    margin: 0;
+    padding: 0 0 0 1em;
+    overflow: hidden;
+}
+
+.autocjs-chapter {
+    line-height: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.autocjs-text:link,
+.autocjs-text:visited,
+.autocjs-text:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.autocjs-text:hover {
+    color: #008cff;
+}
+
+.autocjs-code {
+    padding-right: 5px;
+}
+
+.autocjs-heading .autocjs-code {
+    padding-right: 0.6rem;
+}
+
+.autocjs-anchor {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: -1em;
+    margin: -0.5em 0 0 0;
+    font-family: "autocjs-icon", sans-serif;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size: inherit;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-rendering: auto;
+    overflow: hidden;
+}
+
+.autocjs-anchor:before {
+    content: '\e9cb';
+}
+
+.autocjs-anchor:link,
+.autocjs-anchor:visited,
+.autocjs-anchor:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.autocjs-ft {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: -49px;
+    width: 50px;
+    height: 80px;
+    margin: -40px 0 0;
+    background-color: #fff;
+    border: 1px solid #DDD;
+    box-shadow: 0 6px 12px #666;
+    border-left: none;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+}
+
+.autocjs-switcher {
+    margin: 0 auto;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    overflow: hidden;
+}
+
+.autocjs-top:link,
+.autocjs-top:visited,
+.autocjs-top:hover {
+    display: block;
+    margin: 0 auto;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    overflow: hidden;
+}
+
+.autocjs-top:hover {
+    background-color: #f4f5f9;
+}
+
+.autocjs-overlay {
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+    overflow: hidden;
+}
+
+.autocjs-hide {
+    display: none;
+}
