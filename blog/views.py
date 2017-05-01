@@ -1,7 +1,9 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import HttpResponse, get_object_or_404, render
+from django.utils.text import slugify
 
 import markdown
+from markdown.extensions.toc import TocExtension
 
 from .forms import AddForm, CommentForm
 from .models import Category, Post
@@ -35,19 +37,25 @@ def detail(request, pk):
     这里pk参数和上次编写的一样，都是通过主键id来获取文章
     '''
     post = get_object_or_404(Post, pk=pk)
-
-    # 统计阅读数量
+    
+    # 统计阅读数量 注意 要在渲染markdown之前使用
     post.count = post.count + 1
     post.save()
-
-    post.body = markdown.markdown(post.body, extensions=[
+    
+    md = markdown.Markdown(extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
-        'markdown.extensions.toc',
+        TocExtension(slugify=slugify),
     ])
-
+    post.body = md.convert(post.body)
+    
+    #实现文章目录
+    toc = md.toc
+    
     # 获取所有文章数量
     post_count = len(Post.objects.all())
+
+    
 
     # 获取上下文的
     if post.pk == 1:
@@ -66,8 +74,10 @@ def detail(request, pk):
         'post': post,
         'pre_post': pre_post,
         'next_post': next_post,
+        'toc': toc,
     }
-
+    
+    
     return render(request, 'blog/detail.html', context=context)
 
 
