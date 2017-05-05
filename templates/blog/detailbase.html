@@ -85,7 +85,7 @@
                     {% block main %} {% endblock main %}
 
                 </main>
-                <aside class="col-md-4">  
+                <aside class="col-md-4">
                     <div class="widget widget-recent-posts">
                         <h3 class="widget-title">最近更新的文章</h3>
                         {% get_recent_posts as recent_post_list %}
@@ -141,10 +141,8 @@
         <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="full-width.html">Blog</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/" data-hover="Home">Home</a></li>
+                <li><a href="/about/" data-hover="Home">About</a></li>
             </ul>
         </nav>
     </div>
