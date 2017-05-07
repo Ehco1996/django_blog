@@ -18,4 +18,7 @@ def archives():
 def get_categories():
     return Category.objects.all()
 
+@register.simple_tag
+def get_recommend_posts(num=3):
+    return Post.objects.filter(category=6)[:num]
 

@@ -836,20 +836,20 @@ figure {
     padding-top: 5px;
 }
 
-.post-1{
+article.post-index{
 	background-color: #FFF;
-	padding: 5px 2px;
-	margin-left:150px;
-	margin-right:150px;	
-	margin-bottom: 5px;
+	
+	margin-left:210px;
+	margin-right:150px;			
+	margin-bottom: 25px;
 	border-bottom: 1px solid  lightslategray;
 }
 
-.post-recoment{
+.po1st-recomment{
 	background-color: #FFF;
 	padding: 5px 2px;
-	margin-left:150px;
+	margin-left:210px;
 	margin-right:150px;	
 	margin-bottom: 25px;
-	border-bottom: 2px solid  lightskyblue;
+	border-bottom: 1px solid  lightskyblue;
 }

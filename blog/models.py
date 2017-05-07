@@ -14,7 +14,7 @@ class Category(models.Model):
     Category 目前只需要一个简单的分类名。name就可以了
 
     CharField 指定了name的数据类型
-    即是数据库累心中的字符型
+    即是数据库类型中的字符型
     max_length 制定了该字符的最大长度
     如果超过这个长度，则不能被存入数据库
 
