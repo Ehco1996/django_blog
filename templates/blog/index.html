@@ -1,58 +1,82 @@
-{% extends 'blog/base.html' %} {% block main %} 
-{% for contact in contacts %}
-<article class="post post-1">
-    <header class="entry-header">
-        <h1 class="entry-title">
-            <a href="{{ contact.get_absolute_url }}">{{ contact.title }}</a>
-        </h1>
-        </h1>
-        <div class="entry-meta">
-            <span class="post-category"><a href="#">{{ contact.category.name }} </a></span>
+{% extends 'blog/base.html' %} {% load blog_tags %}{% block main %}
 
-            <span class="post-date">
+<div class="col-md-8 column post-recoment">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img alt="300x200" src="v3/default4.jpg" />
+                <div class="caption">
+                    <h3>
+                        Thumbnail label
+                    </h3>
+                    <p>
+                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id
+                        dolor id nibh ultricies vehicula ut id elit.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% for contact in contacts %}
+    <article class="post post-1">
+        <header class="entry-header">
+            <h1 class="entry-title">
+                <a href="{{ contact.get_absolute_url }}">{{ contact.title }}</a>
+            </h1>
+            </h1>
+            <div class="entry-meta">
+                <span class="post-category"><a href="#">{{ contact.category.name }} </a></span>
+
+                <span class="post-date">
       <a href="#">
         <time class="entry-date" datetime="{{ post.created_time }}">{{ contact.created_time }} </time>
       </a>
     </span>
 
-            <span class="post-author"><a href="#">{{ contact.author }} </a></span>
+                <span class="post-author"><a href="#">{{ contact.author }} </a></span>
 
-            <span class="comments-link"><a href="#"> read: {{ contact.count }}</a></span>
+                <span class="comments-link"><a href="#"> read: {{ contact.count }}</a></span>
 
+            </div>
+        </header>
+
+        <div class="entry-content clearfix">
+            <div class="read-more cl-effect-14">
+
+                <p class="text-center lead"> {{ contact.excerpt }} </p>
+
+                <a href="{{ contact.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+
+            </div>
         </div>
-    </header>
+    </article>
+    {% empty %}
+    <div class="no-post"> 暂时还没有发布文章！</div>
+    {% endfor%}
 
-    <div class="entry-content clearfix">
-        <div class="read-more cl-effect-14">
-            
-                <p class="text-center lead" > {{ contact.excerpt }} </p>
-            
-            <a href="{{ contact.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
-        </div>
+
+    <div class='pagination'>
+        <ul>
+
+            {% if contacts.has_previous %}
+            <li><a href="?page={{ contacts.previous_page_number }}">上一页</a></li>
+            {% endif %}
+
+            <li>
+                当前页: {{ contacts.number }}总页:{{ contacts.paginator.num_pages }}
+            </li>
+
+            {% if contacts.has_next %}
+            <li><a href="?page={{ contacts.next_page_number }}">下一页</a></li>
+            {% endif %}
+
+        </ul>
     </div>
-</article>
-{% empty %}
-<div class="no-post"> 暂时还没有发布文章！</div>
-{% endfor%}
 
 
-<div class='pagination'>
-    <ul>
-
-        {% if post_list.has_previous %}
-        <li><a href="?page={{ contacts.previous_page_number }}">上一页</a></li>
-        {% endif %}
-
-        <li>
-            当前页: {{ contacts.number }}总页:{{ contacts.paginator.num_pages }}
-        </li>
-
-        {% if contacts.has_next %}
-        <li><a href="?page={{ contacts.next_page_number }}">下一页</a></li>
-        {% endif %}
-
-    </ul>
-</div>
-
-
-{% endblock main %}
+    {% endblock main %}
