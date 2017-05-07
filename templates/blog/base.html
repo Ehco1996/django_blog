@@ -23,7 +23,7 @@
     <script src="{% static 'blog/js/pace.min.js' %}"></script>
     <script src="{% static 'blog/js/modernizr.custom.js' %}"></script>
     <script src="{% static 'blog/js/ehco.js' %}"></script>
-
+    <script src="//unslider.com/unslider.js"></script>
 
 </head>
 
@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-5 col-xs-8">
                     <div class="logo">
-                    <h1><a href="{% url 'blog:index' %}"><b>Ehco</b> Blog </a></h1>
+                        <h1><a href="{% url 'blog:index' %}"><b>Ehco</b> Blog </a></h1>
                     </div>
                 </div>
                 <!-- col-md-4 -->
@@ -53,7 +53,7 @@
                                 <li class="cl-effect-8"><a href="/about/" data-hover="Home">About</a></li>
                                 <li class="cl-effect-8">
                                     <a type="button" href="javascript:playPause();">🎵 开/关</a>
-                                
+
                                 </li>
                             </ul>
                         </div>
@@ -63,21 +63,32 @@
                     <div id="header-search-box">
                         <a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
                         <div id="search-form" class="search-form">
-                            
+
                             <form role="search" method="get" id="searchform" action="{% url 'blog:search' %}">
                                 {% csrf_token %}
                                 <input type="search" name='q' placeholder="搜索" required>
                                 <button type="submit"><span class="ion-ios-search-strong"></span></button>
-                            
+
                             </form>
                         </div>
                     </div>
                 </div>
                 <!-- col-md-8 -->
             </div>
+
+            <hr/>
+            <div class="row">
+                <div class="banner">
+                    <ul>
+                        <li>This is a slide.</li>
+                        <li>This is another slide.</li>
+                        <li>This is a final slide.</li>
+                    </ul>
+                </div>
+            </div>
         </header>
     </div>
-    <div class="copyrights">Ehco <a href="https://github.com/Ehco1996">Github</a></div>
+
 
     <div class="content-body">
         <div class="container">
@@ -85,6 +96,7 @@
                 <main class="col-md-8">
                     {% block main %} {% endblock main %}
                 </main>
+
                 <aside class="col-md-4">
                     <div class="widget widget-recent-posts">
                         <h3 class="widget-title">最近更新的文章</h3>
@@ -148,7 +160,12 @@
     </div>
 
 
-<script src="{% static 'blog/js/script.js' %}"></script>
+    <script src="{% static 'blog/js/script.js' %}"></script>
+    <script>
+        $(function () {
+            $('.banner').unslider();
+        });
+    </script>
 </body>
 
 </html>
