@@ -39,14 +39,14 @@ def detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     
     # 统计阅读数量 注意 要在渲染markdown之前使用
-    post.count = post.count + 1
-    post.save()
+    post.increase_count()
     
     md = markdown.Markdown(extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
         TocExtension(slugify=slugify),
     ])
+    
     post.body = md.convert(post.body)
     
     #实现文章目录
