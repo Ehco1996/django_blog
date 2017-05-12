@@ -80,7 +80,7 @@ class Post(models.Model):
     modified_time = models.DateField()
 
     # 这个列用来存储文章的摘要，charfied字段默认是不允许为空的，设置blank属性之后，允许空标题
-    excerpt = models.CharField(max_length=200, default='暂无摘要')
+    excerpt = models.CharField(max_length=200, blank=True)
 
     # 这是分类的标签
     # 分类的标签已经在上面定义过一个专门存放标签的表了
@@ -120,6 +120,14 @@ class Post(models.Model):
     def increase_count(self):
         self.count += 1
         self.save(update_fields=['count'])
+
+    # 重写save函数，增加摘要自动生成的功能
+    def save(self, *args, **kwargs):
+        # 让摘要默认为body字段的前54个字符
+        self.excerpt = self.body[:54]
+
+        # 调动父类save 将数据保存到数据库中
+        super(Post, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['-created_time']
