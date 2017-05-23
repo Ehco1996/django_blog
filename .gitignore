@@ -35,6 +35,7 @@ wheels/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+settings.py
 
 # Unit test / coverage reports
 htmlcov/

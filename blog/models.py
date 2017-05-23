@@ -123,8 +123,11 @@ class Post(models.Model):
 
     # 重写save函数，增加摘要自动生成的功能
     def save(self, *args, **kwargs):
-        # 让摘要默认为body字段的前54个字符
-        self.excerpt = self.body[:54]
+
+        # 防止摘要小于54字的时候也补全摘要    
+        if self.excerpt == '':
+            # 让摘要默认为body字段的前54个字符
+            self.excerpt = self.body[:54]
 
         # 调动父类save 将数据保存到数据库中
         super(Post, self).save(*args, **kwargs)
