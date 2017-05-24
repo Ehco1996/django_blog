@@ -2,18 +2,18 @@
 
 
 
-<div class="row po1st-recomment hidden-xs">
+<div class="row po1st-recomment hidden-xs" >
     <h3> 推荐阅读： </h3>
     {% get_recommend_posts as recommend_list %} {% for recommend in recommend_list %}
-    <div class="col-md-4">
+    <div class="col-md-4" style="overflow:auto; height:300px" >
         <div class="thumbnail">
             <img alt="文章配图" src="{{ recommend.headimage.url }}" />
             <div class="caption">
                 <h6>
-                   <strong> {{ recommend.title|truncatewords:"15" }}...</strong>
+                   <strong> {{ recommend.title}}</strong>
                 </h6>
                 <p>
-                    {{ recommend.excerpt|truncatewords:"15" }}...
+                    {{ recommend.excerpt|truncatechars:25 }}
                 </p>
                 <p>
                     <a class="btn btn-info" href="{{ recommend.get_absolute_url }}">Look</a>

@@ -20,5 +20,8 @@ def get_categories():
 
 @register.simple_tag
 def get_recommend_posts(num=3):
-    return Post.objects.filter(category=6)[:num]
+    '''
+    找到推荐分类的文章的最新三篇
+    '''
+    return Post.objects.filter(category=1)[:num]
 

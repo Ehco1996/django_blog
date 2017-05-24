@@ -15,7 +15,7 @@ from .models import Category, Post
 def index(request):
 
     # 设置每页显示文章的数量
-    limit = 5
+    limit = 10
     post_list = Post.objects.all()
     # 实例化一个分页对象
     paginator = Paginator(post_list, limit)
@@ -44,14 +44,10 @@ def detail(request, pk):
     md = markdown.Markdown(extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
-        TocExtension(slugify=slugify),
     ])
     
     post.body = md.convert(post.body)
-    
-    #实现文章目录
-    toc = md.toc
-    
+     
     # 获取所有文章数量
     post_count = len(Post.objects.all())
 
@@ -74,7 +70,6 @@ def detail(request, pk):
         'post': post,
         'pre_post': pre_post,
         'next_post': next_post,
-        'toc': toc,
     }
     
     
