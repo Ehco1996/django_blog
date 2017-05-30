@@ -661,9 +661,10 @@ figure {
 	border: 1px solid #aaa;
 	margin-bottom: 15px;
 	width: 100%;
+	height: 5px;
 	padding: 15px 15px;
-	font-size: 16px;
-	line-height: 100%;
+	font-size: 14px;
+	line-height: 50%;
 	transition: 0.4s border-color linear;
 }
 
@@ -672,9 +673,9 @@ figure {
 	margin-bottom: 15px;
 	width: 100%;
 	padding: 15px 15px;
-	font-size: 16px;
-	line-height: 20px !important;
-	min-height: 183px;
+	font-size: 14px;
+	line-height: 10px !important;
+	min-height: 2px;
 	transition: 0.4s border-color linear;
 }
 

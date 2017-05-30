@@ -102,7 +102,7 @@ figure {
 	background-color: #FFF;
 	padding: 25px 20px;
 	margin-bottom: 40px;
-	border-bottom: 1px solid #e7e7e7;
+	border-bottom: 1px solid lightcoral;
 }
 .copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
 
@@ -111,9 +111,18 @@ figure {
  */
 
 .logo h1 a {
-    color: #000;
+   	margin: 0;
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	color: lightcoral;
 }
 
+.logo h1 b {
+   	margin: 0;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	color: lightslategray;
+}
 .logo h1 a:hover {
     text-decoration: none;
     border-bottom: none;
@@ -122,7 +131,8 @@ figure {
 .logo h1 {
 	margin: 0;
 	font-family: 'Lato', sans-serif;
-	font-weight: 300;
+	font-weight: 600;
+	color: lightblue;
 }
 
 /**
@@ -651,9 +661,10 @@ figure {
 	border: 1px solid #aaa;
 	margin-bottom: 15px;
 	width: 100%;
+	height: 5px;
 	padding: 15px 15px;
-	font-size: 16px;
-	line-height: 100%;
+	font-size: 14px;
+	line-height: 50%;
 	transition: 0.4s border-color linear;
 }
 
@@ -662,9 +673,9 @@ figure {
 	margin-bottom: 15px;
 	width: 100%;
 	padding: 15px 15px;
-	font-size: 16px;
-	line-height: 20px !important;
-	min-height: 183px;
+	font-size: 14px;
+	line-height: 10px !important;
+	min-height: 2px;
 	transition: 0.4s border-color linear;
 }
 
@@ -826,3 +837,13 @@ figure {
     padding-top: 5px;
 }
 
+article.post-index{
+	background-color: #FFF;
+	border-bottom: 1px solid  lightslategray;
+}
+
+.po1st-recomment{
+	background-color: #FFF;
+	margin-bottom: 25px;
+	border-bottom: 1px solid  lightskyblue;
+}
