@@ -46,18 +46,49 @@
 	</li>
 </ul>
 <br>
-<!--PC和WAP自适应版-->
-<div id="SOHUCS"></div>
-<script type="text/javascript">
-	(function () {
-		var appid = 'cysX5bI3e';
-		var conf = 'prod_4e518ffe3b210926e2e71f4cff373b6f';
-		var width = window.innerWidth || document.documentElement.clientWidth;
-		if (width < 960) {
-			window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
-		} else { var loadJs = function (d, a) { var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement; var b = document.createElement("script"); b.setAttribute("type", "text/javascript"); b.setAttribute("charset", "UTF-8"); b.setAttribute("src", d); if (typeof a === "function") { if (window.attachEvent) { b.onreadystatechange = function () { var e = b.readyState; if (e === "loaded" || e === "complete") { b.onreadystatechange = null; a() } } } else { b.onload = a } } c.appendChild(b) }; loadJs("https://changyan.sohu.com/upload/changyan.js", function () { window.changyan.api.config({ appid: appid, conf: conf }) }); }
-	})();
-</script>
 
+<section class="comment-area" id="comment-area">
+	<hr>
+	<h3>发表评论</h3>
+	<form action="{% url 'comments:post_comment' post.pk %}" method="post" class="">
+		{% csrf_token %}
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label for="{{ form.name.id_for_label }}">名字：</label> {{ form.name }}
+			</div>
+			<div class="form-group col-md-4">
+				<label for="{{ form.email.id_for_label }}">邮箱：</label> {{ form.email }}
+
+			</div>
+			<div class="form-group col-md-4">
+				<label for="{{ form.url.id_for_label }}">URL:(可不填)</label> {{ form.url }}
+			</div>
+
+		</div>
+
+			<div class="col-md-12">
+				<label for="{{ form.text.id_for_label }}">评论：</label> {{ form.text }}
+				<button type="submit" class="btn btn-info">发表</button>
+			</div>
+
+			<!-- row -->
+	</form>
+	<br>
+	<hr/>
+	<div class="comment-list-panel">
+		<h4>评论列表:</h4>
+		<ul class="comment-list list-unstyled">
+			{% for comment in comment_list %}
+			<li class="comment-item">
+				<span class="nickname"><strong>{{ comment.name }}</strong></span>
+				<time class="submit-date" datetime="{{ comment.created_time }}">{{ comment.created_time }}</time>
+				<div class="text">
+					{{ comment.text }}
+				</div>
+			</li>
+			{% empty %} 暂无评论 {% endfor %}
+		</ul>
+	</div>
+</section>
 
 {% endblock main%}

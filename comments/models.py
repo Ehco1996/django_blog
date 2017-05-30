@@ -8,6 +8,7 @@ class Comment(models.Model):
     email = models.EmailField(max_length=255)
     url = models.URLField(blank=True)
     text = models.TextField()
+    # 我们给评论创建一个自动的时间
     created_time = models.DateTimeField(auto_now_add=True)
 
     # 与post数据库相连接，这里是多对一的关系 用ForeignKey连接到Post类 、

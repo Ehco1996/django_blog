@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from blog.forms import CommentForm
+from .forms import CommentForm
 
 from blog.models import Post
 
@@ -48,5 +48,5 @@ def post_comment(request, post_pk):
             }
             return render(request, 'blog/detail.html', context=context)
 
-    # 不是 psot 请求，说名用户灭有提交数据，重定向到文章详情页
+    # 不是 psot 请求，说名用户没有提交数据，重定向到文章详情页
     return redirect(post)
