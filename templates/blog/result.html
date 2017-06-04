@@ -1,12 +1,16 @@
 {% extends 'blog/base.html' %} {% block main %}
+{{ p }}
 {% if error_msg %}
     <h1 class="info">{{ error_msg }}</h1>
 {% endif %}
+
+{{ p }}
 {% for post in post_list %}
+{{ p }}
     <article class="post post-1">
     <header class="entry-header">
         <h1 class="entry-title">
-            <a href="{{ contact.get_absolute_url }}">{{ post.title }}</a>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
         </h1>
         </h1>
         <div class="entry-meta">
@@ -32,7 +36,7 @@
             
                 <p class="text-center lead" > {{ post.excerpt }} </p>
             
-            <a href="{{ contact.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+            <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
         </div>
     </div>
 </article>

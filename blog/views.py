@@ -239,7 +239,7 @@ def search(request):
         return render(request, 'blog/result.html', context={'error_msg': error_msg, })
     else:
 
-        post_list = Post.objects.filter(title__icontains=q)
-
+        post_list = Post.objects.filter(title__icontains=q.upper())
         return render(request, 'blog/result.html', context={'errot_msg': error_msg,
-                                                            'post_list': post_list})
+                                                            'post_list': post_list,
+                                                            })
