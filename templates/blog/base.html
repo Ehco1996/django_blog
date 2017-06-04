@@ -79,49 +79,49 @@
 
 
 
-    <main class="col-md-8">
-        <section class="post-list">
-            
-                {% block main %} {% endblock main %}
-        </section>
-    </main>
+        <main class="col-md-8">
 
-    <aside class="col-md-4">
-        <div class="widget widget-recent-posts">
-            <h3 class="widget-title">最近更新的文章</h3>
-            {% get_recent_posts as recent_post_list %}
-            <ul>
-                {% for post in recent_post_list %}
-                <li>
-                    <a href="{{ post.get_absolute_url}}">{{ post.title }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="widget widget-archives">
-            <h3 class="widget-title">归档</h3>
-            {% archives as archives_list %}
-            <ul>
-                {% for date in archives_list %}
-                <li>
-                    <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月 </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
 
-        <div class="widget widget-category">
-            <h3 class="widget-title">分类</h3>
-            {% get_categories as category_list %}
-            <ul>
-                {% for category in category_list %}
-                <li>
-                    <a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </aside>
+            {% block main %} {% endblock main %}
+
+        </main>
+
+        <aside class="col-md-4">
+            <div class="widget widget-recent-posts">
+                <h3 class="widget-title">最近更新的文章</h3>
+                {% get_recent_posts as recent_post_list %}
+                <ul>
+                    {% for post in recent_post_list %}
+                    <li>
+                        <a href="{{ post.get_absolute_url}}">{{ post.title }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="widget widget-archives">
+                <h3 class="widget-title">归档</h3>
+                {% archives as archives_list %}
+                <ul>
+                    {% for date in archives_list %}
+                    <li>
+                        <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月 </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="widget widget-category">
+                <h3 class="widget-title">分类</h3>
+                {% get_categories as category_list %}
+                <ul>
+                    {% for category in category_list %}
+                    <li>
+                        <a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </aside>
     </div>
     </div>
     </div>

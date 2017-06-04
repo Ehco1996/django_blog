@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'comments',
-    'user',
+    'users',
 ]
 from django.conf import global_settings
 

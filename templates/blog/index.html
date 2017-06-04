@@ -2,15 +2,15 @@
 
 
 
-<div class="row po1st-recomment hidden-xs" >
-    <h3> 推荐阅读： </h3>
+<div class="row po1st-recomment hidden-xs">
+    <h3> 推荐阅读: </h3>
     {% get_recommend_posts as recommend_list %} {% for recommend in recommend_list %}
-    <div class="col-md-4" style="overflow:auto; height:300px" >
+    <div class="col-md-4" style="overflow:auto; height:300px">
         <div class="thumbnail">
             <img alt="文章配图" src="{{ recommend.headimage.url }}" />
             <div class="caption">
                 <h6>
-                   <strong> {{ recommend.title}}</strong>
+                    <strong> {{ recommend.title}}</strong>
                 </h6>
                 <p>
                     {{ recommend.excerpt|truncatechars:25 }}
@@ -59,26 +59,37 @@
 </article>
 {% empty %}
 <div class="no-post"> 暂时还没有发布文章！</div>
-{% endfor%}
+{% endfor%} 
 
-
-<div class='pagination'>
+{% if is_paginated %}
+<aside class="pagination">
     <ul>
-
-        {% if contacts.has_previous %}
-        <li><a href="?page={{ contacts.previous_page_number }}">上一页</a></li>
+        {% if first %}
+        <li><a href="?page=1">1</a></li>
+        {% endif %} 
+        
+        {% if left %} 
+            {% if left_has_more %}
+                <li><span>...</span></li>
+            {% endif %} 
+            {% for i in left %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %} 
         {% endif %}
-
-        <li>
-            当前页: {{ contacts.number }}   总页:{{ contacts.paginator.num_pages }}
-        </li>
-
-        {% if contacts.has_next %}
-        <li><a href="?page={{ contacts.next_page_number }}">下一页</a></li>
+        <li class="current"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+        {% if right %} 
+            {% for i in right %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %} 
+            {% if right_has_more %}
+                <li><span>...</span></li>
+            {% endif %} 
+        {% endif %} 
+        {% if last %}
+        <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
         {% endif %}
-
     </ul>
-</div>
-
+</aside>
+{% endif %} 
 
 {% endblock main %}
