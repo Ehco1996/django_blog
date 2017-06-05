@@ -1,13 +1,6 @@
-{% extends 'blog/base.html' %} {% block main %}
-{{ p }}
-{% if error_msg %}
-    <h1 class="info">{{ error_msg }}</h1>
-{% endif %}
+{% extends 'blog/base.html' %} {% block main %} {% for post in post_list %}
 
-{{ p }}
-{% for post in post_list %}
-{{ p }}
-    <article class="post post-1">
+<article class="post post-1">
     <header class="entry-header">
         <h1 class="entry-title">
             <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
@@ -28,21 +21,20 @@
 
         </div>
     </header>
-    
-       
+
+
 
     <div class="entry-content clearfix">
         <div class="read-more cl-effect-14">
-            
-                <p class="text-center lead" > {{ post.excerpt }} </p>
-            
+
+            <p class="text-center lead"> {{ post.excerpt }} </p>
+
             <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
         </div>
     </div>
 </article>
 {% empty %}
-    <h1 class="lead">
-        抱歉，没有搜索到你需要的文章
-    </h1>
-{% endfor%}
-{% endblock main%}
+<h1 class="lead">
+    抱歉，没有搜索到你需要的文章
+</h1>
+{% endfor%} {% endblock main%}

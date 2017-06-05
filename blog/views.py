@@ -1,7 +1,6 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import HttpResponse, get_object_or_404, render
-from django.utils.text import slugify
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 import markdown
 
 
@@ -13,6 +12,11 @@ from .models import Category, Post
 
 
 class IndexView(ListView):
+    '''
+    首页的类视图
+    继承自Listview
+    该类用于表示从数据库获取的模型列表
+    '''
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'contacts'
@@ -166,6 +170,74 @@ def index(request):
     return render(request, 'blog/index.html', context={'contacts': contacts})
 
 
+class PostDetailView(DetailView):
+    '''
+    详情页面类视图，
+    继承自 DetailView
+    该类表示冲数据库中获得某一条数据
+    '''
+    model = Post
+    template_name = 'blog/detail.html'
+    context_object_name = 'post'
+
+    def get(self, request, *args, **kwargs):
+        # 复写了get 方法的目的是每当文章访问一次，我们即将将文章的阅读量+1
+        # get 方法返回一个 HttpREsponse实例
+        # 我们需要先调用父类的get方法，这才能有self.objecet的属性。
+        # 其值为Post 即我们将要访问的post
+        response = super(PostDetailView, self).get(request, *args, **kwargs)
+
+        # 将阅读量+1
+        # 这里的self.object的值就是被访问的文章 post
+        self.object.increase_count()
+
+        # 将Response对象返回
+        return response
+
+    def get_object(self, queryset=None):
+        # 复写 get_object 方法是为了对post的body进行渲染，
+        post = super(PostDetailView, self).get_object(queryset=None)
+
+        post.body = markdown.markdown(post.body,
+                                      extensions=[
+                                          'markdown.extensions.extra',
+                                          'markdown.extensions.codehilite',
+                                      ])
+        return post
+
+    def get_context_data(self, **kwargs):
+        # 复写 get_contex_data 是为了除了将post传递给模板外（DetailView已经帮我们完成）
+        # 还要讲我们自己写的其他数据传递给模板，如评论表单，上下文等
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+
+        # 获取所有文章数量
+        post_count = len(Post.objects.all())
+        pk = self.object.pk
+        # 获取上下文的
+        if pk == 1:
+            pre_post = {'title': '没有了',
+                        'get_absolute_ul': '', }
+        else:
+            pre_post = get_object_or_404(Post, pk=int(pk) - 1)
+
+        if pk == post_count:
+            next_post = {'title': '没有了',
+                         'get_absolute_ul': '', }
+        else:
+            next_post = get_object_or_404(Post, pk=int(pk) + 1)
+
+        form = CommentForm()
+        comment_list = self.object.comment_set.all()
+        context.update({
+            'form': form,
+            'comment_list': comment_list,
+            'pre_post': pre_post,
+            'next_post': next_post,
+        })
+
+        return context
+
+
 def detail(request, pk):
     '''
     这里pk参数和上次编写的一样，都是通过主键id来获取文章
@@ -214,10 +286,44 @@ def detail(request, pk):
     return render(request, 'blog/detail.html', context=context)
 
 
+class ArchivesView(ListView):
+    '''
+    归档页面的类视图
+    '''
+    model = Post
+    template_name = 'blog/index.html'
+    context_object_name = 'contacts'
+
+    def get_queryset(self):
+        year = self.kwargs.get('year')
+        month = self.kwargs.get('month')
+        return super(ArchivesView, self).get_queryset().filter(created_time__year=year, created_time__month=month)
+
+
 def archives(request, year, month):
     contacts = Post.objects.filter(
         created_time__year=year, created_time__month=month)
     return render(request, 'blog/index.html', context={'contacts': contacts})
+
+
+class CategoryView(ListView):
+    '''
+    分类页面的类视图
+    '''
+    model = Post
+    template_name = 'blog/index.html'
+    context_object_name = 'contacts'
+
+    def get_queryset(self):
+        '''
+        从 URL 捕获的命名组参数值保存在实例的 kwargs 属性（是一个字典）里，
+        非命名组参数值保存在实例的 args 属性（是一个列表）里。
+        所以我们使了 self.kwargs.get('pk') 来获取从 URL 捕获的分类 id 值。
+        然后我们调用父类的 get_queryset 方法获得全部文章列表，
+        紧接着就对返回的结果调用了 filter 方法来筛选该分类下的全部文章并返回。
+        '''
+        cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
+        return super(CategoryView, self).get_queryset().filter(category=cate)
 
 
 def category(request, pk):
@@ -228,6 +334,19 @@ def category(request, pk):
 
 def aboutme(request):
     return render(request, 'blog/about.html', context=None)
+
+
+class SearchListView(ListView):
+    model = Post
+    template_name = 'blog/result.html'
+    context_object_name = 'post_list'
+
+    def get_context_data(self, **kwrags):
+        context = super(SearchListView, self).get_context_data(**kwrags)
+        q = self.request.GET.get('q')
+        post_list = Post.objects.filter(title__icontains=q.upper())
+        context.update({'post_list': post_list})
+        return context
 
 
 def search(request):
