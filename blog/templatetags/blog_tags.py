@@ -1,6 +1,7 @@
-from ..models import Post,Category
+from ..models import Post,Category,Tag
 from django import template
 from django.shortcuts import get_object_or_404
+from django.db.models.aggregates import Count
 
 register = template.Library()
 
@@ -16,7 +17,8 @@ def archives():
 
 @register.simple_tag
 def get_categories():
-    return Category.objects.all()
+    return Category.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
+    #return Category.objects.annotate(num_posts=Count('post'))
 
 @register.simple_tag
 def get_recommend_posts(num=3):
@@ -24,4 +26,3 @@ def get_recommend_posts(num=3):
     找到推荐分类的文章的最新三篇
     '''
     return Post.objects.filter(category=1)[:num]
-
