@@ -5,9 +5,7 @@
 			{{ post.title }}
 		</h1>
 		<div class="entry-meta">
-
 			<span class="post-category"><a href="#">{{ post.category.name }} </a></span>
-
 			<span class="post-date">
       <a href="#">
         <time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }} </time>
@@ -31,9 +29,11 @@
 
 		<div class='jupe' id='needtoc'>
 			{{ post.body|safe }}
-			<br/>
-			<hr/>
+
 		</div>
+		<br/>
+		<hr/>
+	</div>
 	</div>
 </article>
 

@@ -75,15 +75,8 @@
                 <!-- col-md-8 -->
             </div>
         </header>
-
-
-
-
         <main class="col-md-8">
-
-
             {% block main %} {% endblock main %}
-
         </main>
 
         <aside class="col-md-4">
@@ -98,6 +91,7 @@
                     {% endfor %}
                 </ul>
             </div>
+
             <div class="widget widget-archives">
                 <h3 class="widget-title">归档</h3>
                 {% archives as archives_list %}
@@ -120,6 +114,18 @@
 
                     </li>
                     {% endfor %}
+                </ul>
+            </div>
+
+        <div class="widget widget-tag-cloud">
+                <h3 class="widget-title">标签云</h3>
+                {% get_tags as tag_list %}
+                <ul>
+                    {% for tag in tag_list %}
+                    <li>
+                        <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
+                    </li>
+                    {% empty %} 暂无标签！ {% endfor %}
                 </ul>
             </div>
         </aside>

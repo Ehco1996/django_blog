@@ -13,4 +13,6 @@ urlpatterns = [
     url(r'^category/(?P<pk>[0-9]+)/$', views.CategoryView.as_view(), name='category'),
     url(r'^about/$',views.aboutme,name='aboutme'),
     url(r'^search/$',views.SearchListView.as_view(),name='search'),
+    url(r'^tags/(?P<pk>[0-9]+)$',views.TagView.as_view(),name='tag'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,7 +5,7 @@ import markdown
 
 
 from comments.forms import CommentForm
-from .models import Category, Post
+from .models import Category, Post,Tag
 
 
 # Create your views here.
@@ -362,3 +362,15 @@ def search(request):
         return render(request, 'blog/result.html', context={'errot_msg': error_msg,
                                                             'post_list': post_list,
                                                             })
+
+class TagView(ListView):
+    '''
+    显示某一个标签下的所有文章
+    '''
+    model = Post
+    template_name='blog/result.html'
+    context_object_name='post_list'
+
+    def get_queryset(self):
+        tag = get_object_or_404(Tag,pk=self.kwargs.get('pk'))
+        return super(TagView,self).get_queryset().filter(tags=tag)
