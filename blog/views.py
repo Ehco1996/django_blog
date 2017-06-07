@@ -291,8 +291,8 @@ class ArchivesView(ListView):
     归档页面的类视图
     '''
     model = Post
-    template_name = 'blog/index.html'
-    context_object_name = 'contacts'
+    template_name = 'blog/result.html'
+    context_object_name = 'post_list'
 
     def get_queryset(self):
         year = self.kwargs.get('year')
@@ -311,8 +311,8 @@ class CategoryView(ListView):
     分类页面的类视图
     '''
     model = Post
-    template_name = 'blog/index.html'
-    context_object_name = 'contacts'
+    template_name = 'blog/result.html'
+    context_object_name = 'post_list'
 
     def get_queryset(self):
         '''
