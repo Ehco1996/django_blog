@@ -3,7 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 # 导入reverse 函数
 from django.urls import reverse
-
+import markdown
+from django.utils.html import strip_tags
 # Create your models here.
 
 
@@ -124,10 +125,15 @@ class Post(models.Model):
     # 重写save函数，增加摘要自动生成的功能
     def save(self, *args, **kwargs):
 
-        # 防止摘要小于54字的时候也补全摘要    
-        if self.excerpt == '':
-            # 让摘要默认为body字段的前54个字符
-            self.excerpt = self.body[:54]
+        # 防止摘要小于54字的时候也补全摘要
+        if not self.excerpt:
+            # 首先实例化一个MarkDown类吗，来渲染一下body的文本 成为html文本
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+            ])
+            # 让摘要默认为body字段的前54个字符 并且去掉html的标签
+            self.excerpt = strip_tags(md.convert(self.body))[:54]
 
         # 调动父类save 将数据保存到数据库中
         super(Post, self).save(*args, **kwargs)

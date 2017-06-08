@@ -216,12 +216,12 @@ class PostDetailView(DetailView):
         try:
             pre_post = self.object.get_previous_by_created_time()
         except self.object.DoesNotExist:
-            pre_post = None
+            pre_post = {'title': '没有了'}
         
         try:
             next_post = self.object.get_next_by_created_time()
         except self.object.DoesNotExist:
-            next_post = None
+            next_post = {'title': '没有了'}
 
         form = CommentForm()
         comment_list = self.object.comment_set.all()
