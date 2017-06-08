@@ -210,21 +210,18 @@ class PostDetailView(DetailView):
         # 还要讲我们自己写的其他数据传递给模板，如评论表单，上下文等
         context = super(PostDetailView, self).get_context_data(**kwargs)
 
-        # 获取所有文章数量
-        post_count = len(Post.objects.all())
-        pk = self.object.pk
+        
         # 获取上下文的
-        if pk == 1:
-            pre_post = {'title': '没有了',
-                        'get_absolute_ul': '', }
-        else:
-            pre_post = get_object_or_404(Post, pk=int(pk) - 1)
-
-        if pk == post_count:
-            next_post = {'title': '没有了',
-                         'get_absolute_ul': '', }
-        else:
-            next_post = get_object_or_404(Post, pk=int(pk) + 1)
+        # 需要注意上下文可能不存在，需要处理异常
+        try:
+            pre_post = self.object.get_previous_by_created_time()
+        except self.object.DoesNotExist:
+            pre_post = None
+        
+        try:
+            next_post = self.object.get_next_by_created_time()
+        except self.object.DoesNotExist:
+            next_post = None
 
         form = CommentForm()
         comment_list = self.object.comment_set.all()
