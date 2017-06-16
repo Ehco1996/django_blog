@@ -2,11 +2,11 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import HttpResponse, get_object_or_404, render
 from django.views.generic import ListView, DetailView
 import markdown
+from django.db.models import Q
 
 
 from comments.forms import CommentForm
-from .models import Category, Post,Tag
-
+from .models import Category, Post, Tag
 
 # Create your views here.
 
@@ -210,14 +210,13 @@ class PostDetailView(DetailView):
         # 还要讲我们自己写的其他数据传递给模板，如评论表单，上下文等
         context = super(PostDetailView, self).get_context_data(**kwargs)
 
-        
         # 获取上下文的
         # 需要注意上下文可能不存在，需要处理异常
         try:
             pre_post = self.object.get_previous_by_created_time()
         except self.object.DoesNotExist:
             pre_post = {'title': '没有了'}
-        
+
         try:
             next_post = self.object.get_next_by_created_time()
         except self.object.DoesNotExist:
@@ -334,6 +333,13 @@ def aboutme(request):
 
 
 class SearchListView(ListView):
+    '''
+    简单的全文搜索和标题搜索，
+    用了Django.db.models内置的Q()函数
+    # Complex conditions can be created using Q objects
+    When(Q(name__startswith="John") | Q(name__startswith="Paul"),
+    then='name')
+    '''
     model = Post
     template_name = 'blog/result.html'
     context_object_name = 'post_list'
@@ -341,7 +347,8 @@ class SearchListView(ListView):
     def get_context_data(self, **kwrags):
         context = super(SearchListView, self).get_context_data(**kwrags)
         q = self.request.GET.get('q')
-        post_list = Post.objects.filter(title__icontains=q.upper())
+        post_list = Post.objects.filter(
+            Q(title__icontains=q) | Q(body__icontains=q))
         context.update({'post_list': post_list})
         return context
 
@@ -360,14 +367,15 @@ def search(request):
                                                             'post_list': post_list,
                                                             })
 
+
 class TagView(ListView):
     '''
     显示某一个标签下的所有文章
     '''
     model = Post
-    template_name='blog/result.html'
-    context_object_name='post_list'
+    template_name = 'blog/result.html'
+    context_object_name = 'post_list'
 
     def get_queryset(self):
-        tag = get_object_or_404(Tag,pk=self.kwargs.get('pk'))
-        return super(TagView,self).get_queryset().filter(tags=tag)
+        tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
+        return super(TagView, self).get_queryset().filter(tags=tag)
