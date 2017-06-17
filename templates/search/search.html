@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load highlight %}
+{% block main %}
+{% if query %} 
+
+{% for result in page.object_list %}
+{% highlight result with query html_tag "span" css_class "highlighted" %}
+<article class="post post-1">
+    <header class="entry-header">
+        <h1 class="entry-title">
+            <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+        </h1>
+        </h1>
+        <div class="entry-meta">
+            <span class="post-category"><a href="#">{{ result.object.category.name }} </a></span>
+
+            <span class="post-date">
+      <a href="#">
+        <time class="entry-date" datetime="{{ post.created_time }}">{{ result.object.created_time }} </time>
+      </a>
+    </span>
+
+            <span class="post-author"><a href="#">{{ result.object.author }} </a></span>
+
+            <span class="comments-link"><a href="#"> read: {{ result.object.count }}</a></span>
+
+        </div>
+    </header>
+        <div class="entry-content clearfix">
+        <div class="read-more cl-effect-14">
+            <p class="text-center lead"> {{ result.object.excerpt }} </p>
+            <a href="{{ result.object.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+        </div>
+    </div>
+</article>
+{% empty %}
+<h1 class="lead">
+    抱歉，没有搜索到你需要的文章
+</h1>
+{% endfor %}
+{% if page.has_previous or page.has_next %}
+    <div class="col-md-4 col-md-offset-5">
+        {% if page.has_previous %}
+        <a href="?q=={{ query }}&amp;page={{ page.previous_page_number }}">&laquo; 上一页&hellip;</a>
+        {% endif %}
+        {% if page.has_next %}
+        <a href="?q=={{ query }}&amp;page={{ page.next_page_number }}">下一页 &raquo;</a>
+        {% endif %}
+    </div>
+{% endif %}
+{% else %}
+    请输入关键词 例如：Django
+{% endif %}
+{% endblock main %}

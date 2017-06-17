@@ -862,3 +862,7 @@ article.post-index{
     padding: 3px 8px;
     border: 1px solid lightskyblue;
 }
+
+span.highlighted{
+	color: red;
+}

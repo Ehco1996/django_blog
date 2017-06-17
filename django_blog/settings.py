@@ -26,8 +26,8 @@ SECRET_KEY = '3h+yg_vtf7vsyj!p00(usdo5$cv#d2bdxn9s57ove%s#(=dh^n'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-        'www.ehcoblog.ml',
-        '127.0.0.1',
+    'www.ehcoblog.ml',
+    '127.0.0.1',
 ]
 
 
@@ -41,12 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',
     'blog',
     'comments',
     'users',
 ]
 from django.conf import global_settings
-
 
 
 MIDDLEWARE = [
@@ -62,11 +62,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'django_blog.urls'
 
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,6 +138,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# 高亮分词搜索赢钱的配置
+# 指定engine为我们自己开发的blog.whoosh_cn_backend.WhooshEngine
+# PATH 指定了索引文件存放的位置
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+# 结果十个分一页
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+# 每次我们传递了新的文章，都会实时更新索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
