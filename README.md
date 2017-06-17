@@ -19,3 +19,4 @@
 ### day15  增加文章目录的侧边栏
 ### day16  使用autocjs 生成动态侧边栏。修改首页logo,增加文章内容的排版css，对中文有更好的支持
 ### day17  居然忘记更新readme了。最近增加了漂亮的页码显示，comment模块雏形，自动生成文章摘要，修复上下文显示bug
+### day18  用haystack实现全文搜索 ，重新排版template文件夹，使得继承更加方便，更新readme
