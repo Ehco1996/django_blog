@@ -100,4 +100,4 @@ ENV/
 /site
 
 # mac os
-#.DS_Store
+.DS_Store
