@@ -852,6 +852,9 @@ article.post-index{
 }
 
 
+/**
+ * 14.0 - cloud tag
+ */
 .widget-tag-cloud ul {
     padding: 0;
     margin: 0;
@@ -866,4 +869,11 @@ article.post-index{
     margin-bottom: 10px;
     padding: 3px 8px;
     border: 1px solid lightskyblue;
+}
+
+/**
+ * 15.0 - Search highlight
+ */
+span.highlighted{
+	color: red;
 }
