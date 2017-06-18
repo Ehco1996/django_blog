@@ -103,4 +103,6 @@ ENV/
 .DS_Store
 
 # index_Cache
-/whoosh_index
+whoosh_index/*
+
+!.gitignore
