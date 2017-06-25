@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'www.ehcoblog.ml',
     '127.0.0.1',
+    'ehco.ngrok.cc',
 ]
 
 
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'blog',
     'comments',
     'users',
+    'SS',
 ]
 from django.conf import global_settings
 

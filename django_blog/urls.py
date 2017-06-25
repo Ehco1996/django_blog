@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'', include('blog.urls', namespace='blog')),
     url(r'', include('comments.urls', namespace='comments')),
     url(r'^search/',include('haystack.urls')),
+    url(r'^wechat/',include('SS.urls',namespace='SS')),
 ] 
