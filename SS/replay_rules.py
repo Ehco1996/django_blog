@@ -1,5 +1,6 @@
 rules = {
     '指南': 'http://dwz.cn/ehcowechat',
+    '爬虫':'http://dwz.cn/ehcospider',
     '使用教程':'http://mp.weixin.qq.com/s/BoT9EkWLMsxoEIxriND3fw',
     '客户端':'http://mp.weixin.qq.com/s/iQDiW4PROIjQuxeOPy7K5g',
     '梯子':'http://mp.weixin.qq.com/s/CtQwgcvztDTYstpMawLGow',
