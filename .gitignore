@@ -106,3 +106,4 @@ ENV/
 whoosh_index/*
 
 !.gitignore
+ss_invite.py

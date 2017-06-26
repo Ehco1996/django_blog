@@ -10,10 +10,12 @@ replay_rules 是外部资源文件。
 
 from django.template.loader import render_to_string
 import time
+import random
 # 引入自动回复字典文件
 from .replay_rules import rules
 # 引入外部处理函数
-from .ss_invite import code_back
+from .ss_invite import get_invite_code
+from .qiubai import get_jokes
 
 
 nav_bar = '''公众号正在开发中...
@@ -24,6 +26,8 @@ nav_bar = '''公众号正在开发中...
 回复「爬虫」
 即可获得相关文章
 
+回复「段子/来个段子」
+即可获新鲜的段子
 '''
 # 用来计算时间间隔的常量，每次消息传递后更新
 global last_time
@@ -65,7 +69,13 @@ def main_handle(xml):
             return parser_text(xml, text)
         # 针对邀请码特殊处理
         elif msg_content == '邀请码':
-            return code_back(xml)
+            text = get_invite_code()
+            return parser_text(xml,text)
+        # 针对段子特殊处理
+        elif msg_content == '段子' or msg_content == '来个段子':
+            jokes = get_jokes('https://www.qiushibaike.com/')
+            text = jokes[random.randint(0,len(jokes))]
+            return parser_text(xml,text)
         # 当不属于规则是，返回一个功能引导菜单
         else:
             # 获取消息传递的时间
