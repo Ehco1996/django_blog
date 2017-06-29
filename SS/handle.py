@@ -99,7 +99,7 @@ def parser_text(xml, text):
     返回处理过的xml
     '''
     print(text)
-    # 我们翻转发件人和收件人的消息
+    # 我们反转发件人和收件人的消息
     fromUser = xml.find('ToUserName').text
     toUser = xml.find('FromUserName').text
     # event事件是咩有msg id 的

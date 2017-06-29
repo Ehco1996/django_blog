@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from lxml import etree
@@ -15,8 +14,6 @@ from .handle import main_handle
 TOKEN = 'ehcotest2017'
 
 # csrf_exempt 标记是为了取消django自带的csrf标记
-
-
 @csrf_exempt
 def wechat(request):
     '''
@@ -59,6 +56,7 @@ def wechat(request):
         print('**********收到的XML***********\n')
         print(data)
 
+        # 调用我们的handle函数来处理xml
         response_xml = main_handle(xml)
 
         return HttpResponse(response_xml)
