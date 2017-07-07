@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="comment-area" id="comment-area">
+	<hr>
+	<h3>发表评论</h3>
+
+	<form action="{% url 'comments:post_comment' post.pk %}" method="post" class="comment-form">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-4">
+				<label for="{{ form.name.id_for_label }}">名字：</label> {{ form.name }} {{ form.name.errors }}
+			</div>
+			<div class="col-md-4">
+				<label for="{{ form.email.id_for_label }}">邮箱：</label> {{ form.email }} {{ form.email.errors }}
+			</div>
+			<div class="col-md-4">
+				<label for="{{ form.url.id_for_label }}">URL：(可不填)</label> {{ form.url }} {{ form.url.errors }}
+			</div>
+			<div class="col-md-12">
+				<label for="{{ form.text.id_for_label }}">评论：</label> {{ form.text }} {{ form.text.errors }}
+				<button type="submit" class="btn btn-info">发表</button>
+			</div>
+		</div>
+	</form>
+</section>
+{% endblock main%}

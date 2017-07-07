@@ -29,13 +29,9 @@
 
 		<div class='jupe' id='needtoc'>
 			{{ post.body|safe }}
-
 		</div>
-		<br/>
-		<hr/>
 	</div>
 </article>
-
 <ul class="上下文关联">
 	<li>
 		<a href="{{ pre_post.get_absolute_url }}"> <strong>上一篇 ：{{ pre_post.title }}</strong> </a>
@@ -44,8 +40,6 @@
 		<a href="{{ next_post.get_absolute_url }}"> <strong> 下一篇 ：{{ next_post.title }} </strong></a>
 	</li>
 </ul>
-<br>
-
 <section class="comment-area" id="comment-area">
 	<hr>
 	<h3>发表评论</h3>
@@ -77,10 +71,12 @@
 			{% for comment in comment_list %}
 			<li class="comment-item">
 				<span class="nickname"><strong>{{ comment.name }}</strong></span>
-				<time class="submit-date" datetime="{{ comment.created_time }}">{{ comment.created_time }}</time>
 				<div class="text">
 					{{ comment.text }}
+					{{ post.pk }}
+					{{ comment.pk }}
 				</div>
+				<time class="submit-date" datetime="{{ comment.created_time }}">{{ comment.created_time }}</time> - <a class="lead" href="{% url 'comments:comment_reply' post.pk comment.pk %}">回复</a>
 			</li>
 			{% empty %} 暂无评论 {% endfor %}
 		</ul>

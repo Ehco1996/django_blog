@@ -11,7 +11,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class PostComment(admin.ModelAdmin):
-    list_display=['name','text','url','created_time']
+    list_display=['name','pk','text','url','created_time']
 
 
 # Register your models here.

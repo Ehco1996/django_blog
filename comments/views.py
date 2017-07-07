@@ -50,3 +50,30 @@ def post_comment(request, post_pk):
 
     # 不是 psot 请求，说名用户没有提交数据，重定向到文章详情页
     return redirect(post)
+
+def comment_reply(request,comment_pk,post_pk):
+    '''
+    回复评论
+    comment_pk： 父级评论id
+    post_pk: 文章post id
+    '''
+    post = get_object_or_404(Post,pk=post_pk)
+    return  render(request,'comments/reply.html',context={'post':post})
+    
+    '''
+    
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.parent = comment_pk
+            comment.save()
+            return redirect(post)
+        else:
+            return render(request,'comment/reply.html',context={'post':post,'form':form})
+    else:
+        redirect(post)
+    '''
