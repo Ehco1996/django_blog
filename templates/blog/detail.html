@@ -72,7 +72,7 @@
 			{% for comment in comment_list %}
 				<li class="comment-item">
 				<span class="nickname"><strong>{{ comment.name }}</strong></span>
-				<div class="text">
+				<div class="comment-text">
 					{{ comment.text }}
 				</div>
 				<time class="submit-date" datetime="{{ comment.created_time }}">{{ comment.created_time }}</time> - - -
@@ -82,7 +82,7 @@
 					{% if child.parent == comment.pk %}
 						<li class="child-comment">
 						<span class="nickname"><strong>{{ child.name }} →  {{ comment.name }}</strong></span>
-						<div class="text">
+						<div class="comment-text">
 							{{ child.text }}
 						</div>
 						<time class="submit-date" datetime="{{ comment.created_time }}">{{ child.created_time }}</time> - - -

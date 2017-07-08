@@ -1,7 +1,3 @@
-
-
-
-
 * {outline: none;}
 
 h1, 
@@ -20,6 +16,7 @@ b {
 a {
 	color: #333;
 }
+
 
 a:hover, a:focus {
 	text-decoration: none; 
@@ -787,7 +784,7 @@ figure {
 /* Comment list */
 .comment-list {
     margin-top: 30px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .comment-item {
@@ -821,6 +818,16 @@ article.post-index{
 	border-bottom: 1px solid  lightskyblue;
 }
 
+.child-comment{
+	border-bottom: 1px #ccc solid;
+	margin-left: 30px;
+}
+
+.comment-text{
+	font-size: 18px;
+	font-style: bold;
+}
+
 /**
  * 13.0 - Pagination
  */
@@ -851,29 +858,3 @@ article.post-index{
     color: coral;
 }
 
-
-/**
- * 14.0 - cloud tag
- */
-.widget-tag-cloud ul {
-    padding: 0;
-    margin: 0;
-    margin-right: -10px;
-}
-
-.widget-tag-cloud ul li {
-    list-style-type: none;
-    font-size: 13px;
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    padding: 3px 8px;
-    border: 1px solid lightskyblue;
-}
-
-/**
- * 15.0 - Search highlight
- */
-span.highlighted{
-	color: red;
-}

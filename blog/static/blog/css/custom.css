@@ -784,7 +784,7 @@ figure {
 /* Comment list */
 .comment-list {
     margin-top: 30px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .comment-item {
@@ -816,6 +816,16 @@ article.post-index{
 	background-color: #FFF;
 	margin-bottom: 25px;
 	border-bottom: 1px solid  lightskyblue;
+}
+
+.child-comment{
+	border-bottom: 1px #ccc solid;
+	margin-left: 30px;
+}
+
+.comment-text{
+	font-size: 18px;
+	font-style: bold;
 }
 
 /**
