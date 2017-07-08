@@ -12,7 +12,7 @@
 ### 如何使用：
 
 1. 在vps上安装前置环境：pip install -r requirement.txt
-2. clone master下的分之 git clone https://github.com/Ehco1996/django_blog.git
+2. clone master下的分支 git clone https://github.com/Ehco1996/django_blog.git
 3. 生成数据库文件: 首先：python manage.py makemigration 其次：python manage.py migrate
 4. 生成管理员账号：python manage.py createsuperuser
 5. 生成搜索缓存：python manage.py rebulid_index

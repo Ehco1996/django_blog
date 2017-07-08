@@ -224,9 +224,21 @@ class PostDetailView(DetailView):
 
         form = CommentForm()
         comment_list = self.object.comment_set.all()
+        # 一级评论
+        parent_comment = [] 
+        # 二级评论
+        child_comment = []
+        
+        for comm in comment_list:
+            if comm.parent > 0:
+                child_comment.append(comm)
+            else:
+                parent_comment.append(comm)
+
         context.update({
             'form': form,
-            'comment_list': comment_list,
+            'comment_list': parent_comment,
+            'child_comment':child_comment,
             'pre_post': pre_post,
             'next_post': next_post,
         })

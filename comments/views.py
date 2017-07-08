@@ -21,6 +21,8 @@ def post_comment(request, post_pk):
         # 用户评论时提交的数据 存在 request.POST
         # 我们利用这个数据结构 CommentForm 的实例，这样生成了field字段的（name email texe url）
         form = CommentForm(request.POST)
+        # 生成评论的实例
+        comment = Comment()
 
         # 通过is_vaild()方法，django 会帮我们检测数据内容是否合法
         if form.is_valid():
@@ -28,6 +30,7 @@ def post_comment(request, post_pk):
             # commit = False 的作用是 利用表单数据，成成 Comment 模型的实例
             # 意思是 目前不把form里的内容提交到数据库
             comment = form.save(commit=False)
+            comment.parent = request.POST.get('comment_parent')
             # 将评论和文关联起来
             comment.post = post
             # 最后将commen模型的数据保存到数据库
@@ -44,36 +47,27 @@ def post_comment(request, post_pk):
             context = {
                 'post': post,
                 'form': form,
-                'comment_list': comment_list
+                'comment_list':comment_list,
             }
             return render(request, 'blog/detail.html', context=context)
 
     # 不是 psot 请求，说名用户没有提交数据，重定向到文章详情页
     return redirect(post)
 
-def comment_reply(request,comment_pk,post_pk):
+
+def comment_reply(request, post_pk, comment_pk):
     '''
     回复评论
     comment_pk： 父级评论id
     post_pk: 文章post id
     '''
-    post = get_object_or_404(Post,pk=post_pk)
-    return  render(request,'comments/reply.html',context={'post':post})
-    
-    '''
-    
+    post = get_object_or_404(Post, pk=post_pk)
+    last_comment = Comment.objects.filter(pk=comment_pk)[0]
+    form = CommentForm()
+    context = {
+        'post': post,
+        'last_comment': last_comment,
+        'form': form,
+    }
 
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.parent = comment_pk
-            comment.save()
-            return redirect(post)
-        else:
-            return render(request,'comment/reply.html',context={'post':post,'form':form})
-    else:
-        redirect(post)
-    '''
+    return render(request, 'comments/reply.html', context=context)
