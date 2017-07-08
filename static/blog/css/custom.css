@@ -858,3 +858,28 @@ article.post-index{
     color: coral;
 }
 
+/**
+ - * 14.0 - cloud tag
+ - */
+ .widget-tag-cloud ul {
+     padding: 0;
+     margin: 0;
+     margin-right: -10px;
+ }
+ 
+ .widget-tag-cloud ul li {
+     list-style-type: none;
+     font-size: 13px;
+     display: inline-block;
+     margin-right: 10px;
+     margin-bottom: 10px;
+     padding: 3px 8px;
+     border: 1px solid lightskyblue;
+ }
+ 
+ /**
+ - * 15.0 - Search highlight
+ - */
+ span.highlighted{
+ 	color: red;
+ }
