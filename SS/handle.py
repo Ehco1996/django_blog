@@ -16,6 +16,7 @@ from .replay_rules import rules
 # 引入外部处理函数
 from .ss_invite import get_invite_code
 from .qiubai import get_jokes
+from .trainticket import query_train_info, get_query_url
 
 
 nav_bar = '''公众号正在开发中...
@@ -28,6 +29,10 @@ nav_bar = '''公众号正在开发中...
 
 回复「段子/来个段子」
 即可获新鲜的段子
+
+回复 车票查询 [时间] [出发站] [到达站]
+即可查询最新火车票信息
+格式如: 车票查询 2017-07-20 南京 苏州
 '''
 # 用来计算时间间隔的常量，每次消息传递后更新
 global last_time
@@ -70,12 +75,17 @@ def main_handle(xml):
         # 针对邀请码特殊处理
         elif msg_content == '邀请码':
             text = get_invite_code()
-            return parser_text(xml,text)
+            return parser_text(xml, text)
         # 针对段子特殊处理
         elif msg_content == '段子' or msg_content == '来个段子':
             jokes = get_jokes('https://www.qiushibaike.com/')
-            text = jokes[random.randint(0,len(jokes))]
-            return parser_text(xml,text)
+            text = jokes[random.randint(0, len(jokes))]
+            return parser_text(xml, text)
+        # 针对火车票查询特殊处理
+        elif msg_content[:4] == '车票查询':
+            info_list = query_train_info(get_query_url(msg_content))
+            text = '由于微信文本长度限制，只能回复时间最新的5条列车信息\n\n'+''.join(info_list[0:5])
+            return parser_text(xml, text)
         # 当不属于规则是，返回一个功能引导菜单
         else:
             # 获取消息传递的时间
