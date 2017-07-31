@@ -23,7 +23,7 @@ def get_jokes(url):
     html = get_html_text(url)
     soup = BeautifulSoup(html, 'lxml')
 
-    articles = soup.find_all('div', class_='article block untagged mb15')
+    articles = soup.find_all('div', class_='article block untagged mb15 typs_hot')
 
     for article in articles:
         body = article.find('span').text
@@ -42,3 +42,7 @@ def get_jokes(url):
     
     return joke_list
 
+
+
+# test
+#print(get_jokes('https://www.qiushibaike.com/'))
