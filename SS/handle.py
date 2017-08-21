@@ -18,8 +18,6 @@ from .ss_invite import get_invite_code
 from .qiubai import get_jokes
 from .trainticket import query_train_info, get_query_url
 
-from.models import MoneyRecord
-
 nav_bar = '''公众号正在开发中...
  
 回复「指南」
@@ -86,18 +84,6 @@ def main_handle(xml):
         elif msg_content[:4] == '车票查询':
             info_list = query_train_info(get_query_url(msg_content))
             text = '由于微信文本长度限制，只能回复时间最新的5条列车信息\n\n' + ''.join(info_list[0:5])
-            return parser_text(xml, text)
-        elif msg_content[:3] == '充值码':
-            code = msg_content.split(' ')[1]
-            try:
-                res = MoneyRecord.objects.get(info_code=code)
-            except:
-                res = None
-
-            if res:
-                text = '下面是充值码 谢谢支持！\n\n{}'.format(res.money_code)
-            else:
-                text = '流水号输入错误，或者后台数据还没有及时更新，请等待2分分钟后再试\n如果一直显示这条信息，请联系站长本人'
             return parser_text(xml, text)
         # 当不属于规则是，返回一个功能引导菜单
         else:

@@ -1,14 +1,20 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.six import BytesIO
+from django.contrib import messages
 from lxml import etree
 from django.utils.encoding import smart_str
 import hashlib
 import time
+import datetime
 
 from .handle import main_handle
 from .models import MoneyRecord
+import qrcode
 
+from .ss_code import gen_money_code
+from .payments import alipay
 # Create your views here.
 
 # 公众号自定义的token
@@ -71,23 +77,72 @@ def Money_code_view(request):
     context = {}
 
     if request.method == 'POST':
-        # 用户输入
-        code = request.POST.get('info_code').lstrip()
-        print(code)
-        # 后台查询
+        number = request.POST.get('q')
+        out_trade_no = datetime.datetime.fromtimestamp(
+            time.time()).strftime('%Y%m%d%H%M%S%s')
         try:
-            res = MoneyRecord.objects.get(info_code=code)
+            # 获取金额数量
+            amount = int(number)
+            # 生成订单
+            trade = alipay.api_alipay_trade_precreate(
+                subject="Ehco的{}元充值码".format(amount),
+                out_trade_no=out_trade_no,
+                total_amount=amount,)
+
+            # 获取二维码链接
+            code_url = trade.get('qr_code', '')
+            request.session['code_url'] = code_url
+            # 将订单号传入模板
+            context['out_trade_no'] = out_trade_no
+            context['info'] = '请用支付宝扫描下方二维码付款 付费完成之后请点击确认!'
         except:
-            res = None
+            res = alipay.api_alipay_trade_cancel(out_trade_no=out_trade_no)
 
-        if res:
-            info = '查询成功，充值码在下方'
-            context['moneycode'] = res.money_code
-
-        else:
-            info = '这个流水号不符合标准, 或者你已经输入过了，请不要重复输入！'
     else:
-        info = '这个过程需要后台登录支付宝进行查询，整个过程需要2分种左右，请不要重复点击!'
-
-    context['info'] = info
+        context['info'] = '请输入金额后点击提交，生成支付订单二维码,扫描二维码付费后点确认，即可获得等额的充值码'
     return render(request, 'SS/moneycode.html', context=context)
+
+
+def gen_face_pay_qrcode(request):
+    '''生成当面付的二维码'''
+    # 从seesion中获取订单的二维码
+    url = request.session.get('code_url', '')
+    # 删除订单二维码
+    del request.session['code_url']
+    # 生成ss二维码
+    img = qrcode.make(url)
+    buf = BytesIO()
+    img.save(buf)
+    image_stream = buf.getvalue()
+    # 构造图片reponse
+    response = HttpResponse(image_stream, content_type="image/png")
+
+    return response
+
+
+def Face_pay_view(request, out_trade_no):
+    '''当面付处理逻辑'''
+    context = {}
+    paid = False
+
+    for i in range(10):
+        time.sleep(3)
+        # 每隔三秒检测交易状态
+        res = alipay.api_alipay_trade_query(out_trade_no=out_trade_no)
+        if res.get("trade_status", "") == "TRADE_SUCCESS":
+            paid = True
+            amount = res.get("total_amount", 0)
+            # 生成对于数量的充值码
+            moneycode = gen_money_code(amount)
+            # 后台数据库增加记录
+            record = MoneyRecord.objects.create(
+                info_code=out_trade_no, amount=amount, money_code=moneycode)
+            # 返回充值码到网页
+            messages.info(request, '充值码生成成功，请尽快复制充值！')
+            messages.success(request, moneycode)
+            return HttpResponseRedirect('/wechat/moneycode/')
+    # 如果30秒内没有支付，则关闭订单：
+    if paid is False:
+        alipay.api_alipay_trade_cancel(out_trade_no=out_trade_no)
+        messages.warning(request, "充值失败了!自动跳转回充值界面")
+        return HttpResponseRedirect('wechat/moneycode/')

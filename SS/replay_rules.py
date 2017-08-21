@@ -9,6 +9,7 @@ rules = {
     '黑域': "链接:https://pan.baidu.com/s/1gfCEdnt 密码:v2ze",
     '妹纸图': '链接:https://pan.baidu.com/s/1qY2Rbq8 密码:rqv6',
     '妹子图': '链接:https://pan.baidu.com/s/1qY2Rbq8 密码:rqv6',
-    '付费': '付费请直接向支付宝转账\n支付宝：17601543496\n然后点击该链接，\nlink: www.ehcoblog.ml/wechat/moneycode/\n输入转账流水号：\n如「20170815200040011100160081560232」\n即可获得充值码',
-    '充值': '付费请直接向支付宝转账\n支付宝：17601543496\n然后再后台输入：【充值码 + 流水号】\n如：「充值码 20170815200040011100160081560232」\n即可获得充值码',
+    '付费': '付费请跳转到该页面:\nwww.ehcoblog.ml/wechat/moneycode/\n输入需要充值的金额，并用支付宝扫描二维码付款后，点击确定！\n即可获得充值码',
+    '付费': '充值请跳转到该页面：\nwww.ehcoblog.ml/wechat/moneycode/\n输入需要充值的金额，并用支付宝扫描二维码付款后，点击确定！\n即可获得充值码',
+    
 }

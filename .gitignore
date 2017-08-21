@@ -108,3 +108,5 @@ whoosh_index/*
 !.gitignore
 ss_invite.py
 .vscode/settings.json
+SS/Alipay_pub.pem
+SS/App_pravite.pem
