@@ -10,6 +10,6 @@ rules = {
     '妹纸图': '链接:https://pan.baidu.com/s/1qY2Rbq8 密码:rqv6',
     '妹子图': '链接:https://pan.baidu.com/s/1qY2Rbq8 密码:rqv6',
     '付费': '付费请跳转到该页面:\nwww.ehcoblog.ml/wechat/moneycode/\n输入需要充值的金额，并用支付宝扫描二维码付款后，点击确定！\n即可获得充值码',
-    '付费': '充值请跳转到该页面：\nwww.ehcoblog.ml/wechat/moneycode/\n输入需要充值的金额，并用支付宝扫描二维码付款后，点击确定！\n即可获得充值码',
+    '充值': '充值请跳转到该页面：\nwww.ehcoblog.ml/wechat/moneycode/\n输入需要充值的金额，并用支付宝扫描二维码付款后，点击确定！\n即可获得充值码',
     
 }

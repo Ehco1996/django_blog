@@ -24,5 +24,3 @@ alipay = AliPay(
     sign_type="RSA2",  # RSA 或者 RSA2
     debug=False,  # 默认False
 )
-
-
