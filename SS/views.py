@@ -146,4 +146,4 @@ def Face_pay_view(request, out_trade_no):
     if paid is False:
         alipay.api_alipay_trade_cancel(out_trade_no=out_trade_no)
         messages.warning(request, "充值失败了!自动跳转回充值界面")
-        return HttpResponseRedirect('wechat/moneycode/')
+        return HttpResponseRedirect('/wechat/moneycode/')
