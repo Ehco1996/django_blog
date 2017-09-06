@@ -60,11 +60,6 @@ def wechat(request):
         # 这里将获取到的非uicode字符转换为可以处理的字符编码
         data = smart_str(request.body)
         xml = etree.fromstring(data)
-
-        # 在控制台输出一下挑调试信息
-        print('**********收到的XML***********\n')
-        print(data)
-
         # 调用我们的handle函数来处理xml
         response_xml = main_handle(xml)
 

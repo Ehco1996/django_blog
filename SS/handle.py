@@ -17,6 +17,7 @@ from .replay_rules import rules
 from .ss_invite import get_invite_code
 from .qiubai import get_jokes
 from .trainticket import query_train_info, get_query_url
+from .search import get_search_result_img, get_search_result_text
 
 nav_bar = '''公众号正在开发中...
  
@@ -33,19 +34,15 @@ nav_bar = '''公众号正在开发中...
 即可查询最新火车票信息
 格式如: 车票查询 2017-07-20 南京 苏州
 '''
-# 用来计算时间间隔的常量，每次消息传递后更新
-global last_time
-last_time = 1
 
 
 def main_handle(xml):
-    global last_time
     # 找到传来的消息事件：
     # 如果普通用户发来短信，则event字段不会被捕捉
     try:
         event = xml.find('Event').text
     except:
-        event = '木有事件发生'
+        event = 'none'
 
     try:
         # 找到此次传送的消息信息的类型和内容
@@ -68,7 +65,15 @@ def main_handle(xml):
     # 目前只能自动回复文本类型的消息
     if msg_type == 'text':
         # 当收到的信息在处理规则之中时
-        if msg_content in rules.keys():
+        if msg_content[:2] == '图片':
+            q = msg_content.split(' ')[1]
+            text = get_search_result_img(q)
+            return parser_text(xml, text)
+        elif msg_content[:2] == '搜索':
+            q = msg_content.split(' ')[1]
+            text = get_search_result_text(q)
+            return parser_text(xml, text)
+        elif msg_content in rules.keys():
             text = rules[msg_content]
             return parser_text(xml, text)
         # 针对邀请码特殊处理
@@ -85,18 +90,10 @@ def main_handle(xml):
             info_list = query_train_info(get_query_url(msg_content))
             text = '由于微信文本长度限制，只能回复时间最新的5条列车信息\n\n' + ''.join(info_list[0:5])
             return parser_text(xml, text)
+
         # 当不属于规则是，返回一个功能引导菜单
         else:
-            # 获取消息传递的时间
-            t = int(time.time()) - last_time
-            last_time = (int(time.time()))
-            print(last_time)
-            # 当用户连续发信息的时候，我们不自动回复
-            if t > 5:
-                return parser_text(xml, text=nav_bar)
-
-            else:
-                return 'success'
+            return parser_text(xml, text=nav_bar)
 
     else:
         return 'success'
@@ -107,7 +104,7 @@ def parser_text(xml, text):
     处理微信发来的文本数据
     返回处理过的xml
     '''
-    print(text)
+    # print(text)
     # 我们反转发件人和收件人的消息
     fromUser = xml.find('ToUserName').text
     toUser = xml.find('FromUserName').text
