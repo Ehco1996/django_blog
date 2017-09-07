@@ -10,9 +10,9 @@ import time
 import datetime
 
 from .handle import main_handle
-from .models import MoneyRecord
-import qrcode
+from .models import MoneyRecord, ImageUrl
 
+import qrcode
 from .ss_code import gen_money_code
 from .payments import alipay
 # Create your views here.
@@ -142,3 +142,6 @@ def Face_pay_view(request, out_trade_no):
         alipay.api_alipay_trade_cancel(out_trade_no=out_trade_no)
         messages.warning(request, "充值失败了!自动跳转回充值界面")
         return HttpResponseRedirect('/wechat/moneycode/')
+
+
+

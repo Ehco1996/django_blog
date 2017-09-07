@@ -38,3 +38,21 @@ class MoneyRecord(models.Model):
     class Meta:
         verbose_name_plural = '交易记录'
         ordering = ('-time',)
+
+
+class ImageUrl(models.Model):
+    '''存储图片的url地址'''
+
+    name = models.CharField(
+        '关键词',
+        max_length=64,
+        unique=True
+
+    )
+
+    links = models.TextField(
+        '图片链接'
+    )
+
+    def __str__(self):
+        return self.name

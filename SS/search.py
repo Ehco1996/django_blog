@@ -1,66 +1,79 @@
-# Import the api module for the results class
-import search_google.api
-from random import randint
+'''
+Google Image Spider
 
-# Define buildargs for cse api
-BUILDARGS = {
-    'serviceName': 'customsearch',
-    'version': 'v1',
-    'developerKey': 'AIzaSyBqJ9JPmKVrnjT-9XdTj9R7oKp6HMGN5Cg'
-}
+'''
 
 
-def get_search_result_text(q):
+# 映入django orm
+import sys
+import os
+import django
+sys.path.append(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_blog.settings'
+django.setup()
+
+from SS.models import ImageUrl
+
+import requests
+from bs4 import BeautifulSoup
+
+
+SEARCHRUL = 'https://www.google.com/search?&safe=off&q={}&tbm=isch&tbs=itp:photo,isz:l'
+
+
+def get_html_text(url):
+    '''获取网页的原始text'''
+    headers = {}
+    headers['User-Agent'] = "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"
+    try:
+        r = requests.get(url, timeout=9, headers=headers)
+        r.raise_for_status
+        r.encoding = r.apparent_encoding
+        return r.text
+    except:
+        return 'error'
+
+
+def parse_img_url(q):
     '''
-    返回Google Web搜索的结果和url
-
-    q : 搜索关键词<str>
-
+    解析返回搜索图片的原始链接
+    q ： 搜索关键词
+    nums： 返回的结果数量 最大值20
     '''
-
-    # 网页搜索的参数
-    cseargs = {
-        'q': q,
-        'cx': '012122443042025158512:yxwq6atin3w',
-        'num': 1
-    }
-
-    # 从结果中随机筛选出一条答案
-    #n = randint(0, 2)
-    n = 0
-    results = search_google.api.results(BUILDARGS, cseargs)
-
-    title = results.get_values('items', 'title')
-    links = results.get_values('items', 'link')
-    snippet = results.get_values('items', 'snippet')
-
-    return '标题：{}\n描述：{}\nlink：{}'.format(title[n], snippet[n].replace('\n', ''), links[n])
+    links = []
+    url = SEARCHRUL.format(q)
+    html = get_html_text(url)
+    if html != 'error':
+        soup = BeautifulSoup(html, 'lxml')
+        content = soup.find_all('div', class_='rg_meta')
+        for link in content:
+            rec = eval(link.text)
+            links.append(rec['ou'])
+        return links
+    else:
+        return 'error'
 
 
-def get_search_result_img(q):
+from random import sample
+
+
+def save_img_result(q):
+    '''保存数据'''
+    links = parse_img_url(q)
+    images = ImageUrl.objects.create(name=q, links=links)
+    images.save()
+
+
+def get_image_url(q):
     '''
-    返回Google Image 搜索的结果url
-
-    q : 搜索关键词<str>
-
+    检测数据里是否有该关键词的图片
+    如果没有，则抓取新的
     '''
-
-    # 图片搜索的参数
-    cseargs_img = {
-        'q': q,
-        'cx': '012122443042025158512:yxwq6atin3w',
-        'searchType': 'image',
-        'fileType': 'jpg',
-        'imgType': 'photo',
-        'num': 1
-    }
-
-    # 从结果中随机筛选出一条答案
-    #n = randint(0, 2)
-    n = 0
-    results = search_google.api.results(BUILDARGS, cseargs_img)
-
-    links = results.get_values('items', 'link')
-
-    return links[n]
-
+    images = ImageUrl.objects.filter(name=q)
+    if len(images) != 1:
+        res = save_img_result(q)
+        return '正在飞速抓取中，请一分钟之后重新输入关键词，获取图片链接'
+    else:
+        l = sample(eval(images[0].links), 3)
+        return '\n\n'.join(x for x in l)
