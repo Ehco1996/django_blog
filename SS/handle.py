@@ -17,7 +17,7 @@ from .replay_rules import rules
 from .ss_invite import get_invite_code
 from .qiubai import get_jokes
 from .trainticket import query_train_info, get_query_url
-from .search import get_image_url
+from .search import mainloop
 
 
 nav_bar = '''公众号正在开发中...
@@ -31,9 +31,14 @@ nav_bar = '''公众号正在开发中...
 回复「段子/来个段子」
 即可获新鲜的段子
 
-回复 车票查询 [时间] [出发站] [到达站]
-即可查询最新火车票信息(7天内)
-格式如: 车票查询 2017-07-20 南京 苏州
+回复 「图片+关键词」
+即可获得相关图片链接
+重复搜索能得到不同答案
+
+回复 「车票查询+参数」
+即可查询火车票信息(7天内)
+格式如: 
+车票查询 2017-07-20 南京 苏州
 '''
 
 
@@ -68,7 +73,7 @@ def main_handle(xml):
         # 当收到的信息在处理规则之中时
         if msg_content[:2] == '图片':
             q = msg_content.split(' ')[1]
-            text = get_image_url(q)
+            text = mainloop(q)
             return parser_text(xml, text)
         elif msg_content in rules.keys():
             text = rules[msg_content]
