@@ -16,7 +16,6 @@ from .replay_rules import rules
 # 引入外部处理函数
 from .ss_invite import get_invite_code
 from .qiubai import get_jokes
-from .trainticket import query_train_info, get_query_url
 from .search import mainloop
 
 
@@ -35,10 +34,6 @@ nav_bar = '''公众号正在开发中...
 即可获得相关图片链接
 重复搜索能得到不同答案
 
-回复 「车票查询+参数」
-即可查询火车票信息(7天内)
-格式如: 
-车票查询 2017-07-20 南京 苏州
 '''
 
 
@@ -87,12 +82,6 @@ def main_handle(xml):
             jokes = get_jokes('https://www.qiushibaike.com/')
             text = jokes[random.randint(0, len(jokes) - 1)]
             return parser_text(xml, text)
-        # 针对火车票查询特殊处理
-        elif msg_content[:4] == '车票查询':
-            info_list = query_train_info(get_query_url(msg_content))
-            text = '由于微信文本长度限制，只能回复时间最新的5条列车信息\n\n' + ''.join(info_list[0:5])
-            return parser_text(xml, text)
-
         # 当不属于规则是，返回一个功能引导菜单
         else:
             return parser_text(xml, text=nav_bar)
