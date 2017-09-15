@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from SS.models import MoneyRecord, ImageUrl
+from SS.models import MoneyRecord, ImageUrl, Foods
 
 
 class MoneyAdmin(admin.ModelAdmin):
@@ -11,3 +11,4 @@ class MoneyAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(MoneyRecord, MoneyAdmin)
 admin.site.register(ImageUrl)
+admin.site.register(Foods)

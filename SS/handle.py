@@ -17,7 +17,7 @@ from .replay_rules import rules
 from .ss_invite import get_invite_code
 from .qiubai import get_jokes
 from .search import mainloop
-
+from .foodfind import get_random_food
 
 nav_bar = '''公众号正在开发中...
  
@@ -29,6 +29,9 @@ nav_bar = '''公众号正在开发中...
 
 回复「段子/来个段子」
 即可获新鲜的段子
+
+回复「今天吃什么」
+即可随机获得一道美食
 
 回复 「图片+关键词」
 即可获得相关图片链接
@@ -69,6 +72,9 @@ def main_handle(xml):
         if msg_content[:2] == '图片':
             q = msg_content.split(' ')[1]
             text = mainloop(q)
+            return parser_text(xml, text)
+        elif msg_content == '今天吃什么':
+            text = get_random_food()
             return parser_text(xml, text)
         elif msg_content in rules.keys():
             text = rules[msg_content]

@@ -4,7 +4,7 @@ Google Image Spider
 '''
 
 
-# 映入django orm
+# 引入django orm
 import sys
 import os
 import django
