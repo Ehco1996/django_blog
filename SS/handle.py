@@ -14,7 +14,6 @@ import random
 # 引入自动回复字典文件
 from .replay_rules import rules
 # 引入外部处理函数
-from .ss_invite import get_invite_code
 from .qiubai import get_jokes
 from .search import mainloop
 from .foodfind import get_random_food
@@ -78,10 +77,6 @@ def main_handle(xml):
             return parser_text(xml, text)
         elif msg_content in rules.keys():
             text = rules[msg_content]
-            return parser_text(xml, text)
-        # 针对邀请码特殊处理
-        elif msg_content == '邀请码':
-            text = get_invite_code()
             return parser_text(xml, text)
         # 针对段子特殊处理
         elif msg_content == '段子' or msg_content == '来个段子':
