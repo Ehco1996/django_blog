@@ -1,5 +1,6 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import HttpResponse, get_object_or_404, render
+from django.shortcuts import render_to_response
 from django.views.generic import ListView, DetailView
 import markdown
 from django.db.models import Q
@@ -391,3 +392,6 @@ class TagView(ListView):
     def get_queryset(self):
         tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
         return super(TagView, self).get_queryset().filter(tags=tag)
+
+def resume(request):
+    return render_to_response('blog/resume.html')
