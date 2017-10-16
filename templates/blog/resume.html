@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static 'img/icon.png' %}" />
-    <title>Ehco 的个人简历</title>
+    <title>Ehco'Resume - 后端开发</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
 
@@ -36,7 +36,7 @@
                         <div class="box">
                             <div class="media">
                                 <div class="media-left">
-                                    <figure class="image is-128x128">
+                                    <figure class="image is-96x96">
                                         <img src="{% static 'img/headimg.png' %}">
                                     </figure>
                                 </div>
@@ -88,7 +88,7 @@
                         <div class="notification is-link">
                             <p class="title is-1">Ehco</p>
                             <p>爬墙的少年</p>
-                            <p class="subtitle is-5">后端/前端/开发/运维</p>
+                            <p class="subtitle is-4">Python/后端/开发</p>
                         </div>
                     </div>
                 </div>
@@ -117,17 +117,15 @@
                                     </li>
                                     <li>采用独立开发的后台系统</li>
                                     <li>
-                                        <span id="highlight">3K+</span>订阅
-                                    </li>
-                                    <li>
-                                        <strong>公众号:findyourownway</strong>
+                                        <span id="highlight">3K+</span>订阅,平均每篇文章
+                                        <span id="highlight">500+阅读量</span>
                                     </li>
                                 </ul>
                             </div>
                         </article>
                         <article class="message">
                             <div class="message-header">
-                                <p>知乎专栏：从零开始写Python爬虫</p>
+                                <a href="https://zhuanlan.zhihu.com/Ehco-python">知乎专栏：从零开始写Python爬虫</a>
                                 <p>2017-05 - 至今</p>
                             </div>
                             <div class="message-body">
@@ -139,18 +137,18 @@
                                     <li>热门文章:</li>
                                     <li>
                                         <a class="link" href="https://zhuanlan.zhihu.com/p/28537306">
-                                            <strong>获取<span id="highlight">支付宝</span>账单信息</strong>
+                                            <strong>获取
+                                                <span id="highlight">支付宝</span>账单信息</strong>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="link" href="https://zhuanlan.zhihu.com/p/27969976">
-                                            <strong>12306火车票信息查询</strong>
+                                            <strong>
+                                                <span id="highlight">12306</span>火车票信息查询</strong>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="link" href="https://zhuanlan.zhihu.com/Ehco-python">
-                                            <strong>专栏地址</strong>
-                                        </a>
+
                                     </li>
                                 </ul>
                             </div>
@@ -167,18 +165,33 @@
                             <div class="message-body">
                                 <ul>
                                     <li>
-                                        <span>独立开发的blog系统</span>
+                                        <span class="tag is-info is-medium">个人博客系统</span>
                                     </li>
                                     <li>
-                                        完善的
+                                        具有完善的
                                         <span id="highlight">评论/后台/编辑</span>系统
                                     </li>
                                     <li>
-                                        <span>前端：bulma 后端：django1.1</span>
+                                        支持
+                                        <span id="highlight">Markdwon</span>格式的内容编辑
+                                    </li>
+                                    <li>
+                                        使用
+                                        <span id="highlight">haystack</span>全文搜索与关键字高亮
+                                    </li>
+                                    <li>
+                                        使用
+                                        <span id="highlight">Autoc.js</span>实现文章动态目录
+                                    </li>
+                                    <li>
+                                        <span>前端:
+                                            <span id="highlight">Bootstrap</span> 后端:
+                                            <span id="highlight">Django1.1</span>
+                                        </span>
                                     </li>
                                     <li>
                                         <a class="link" href="http://www.ehcoblog.ml/">
-                                            <strong>博客地址&nbsp;</strong>
+                                            <strong>博客地址</strong>
                                         </a>
                                     </li>
                                     <li>
@@ -197,14 +210,11 @@
                             <div class="message-body">
                                 <ul>
                                     <li>
-                                        <span>根据开放平台文档接入后台</span>
+                                        <span class="tag is-info is-medium">微信订阅号后台</span>
                                     </li>
                                     <li>
-                                        黑苹果
-                                        <span>支持关键词回复</span>
-                                    </li>
-                                    <li>
-                                        <span>从数据库返回用户数据</span>
+                                        支持
+                                        <span id="highlight">关键词</span>自动回复
                                     </li>
                                     <li>
                                         动态抓取
@@ -215,7 +225,14 @@
                                         <span id="highlight">Google图片</span>返回
                                     </li>
                                     <li>
+                                        随机抓取并返回
+                                        <span id="highlight">美食节菜谱</span>
+                                    </li>
+                                    <li>
                                         <span id="highlight">12306</span>火车票查询系统
+                                    </li>
+                                    <li>用
+                                        <span id="highlight">Django</span>对接微信开发平台
                                     </li>
                                 </ul>
                             </div>
@@ -228,22 +245,51 @@
                             <div class="message-body">
                                 <ul>
                                     <li>
-                                        <span>一个全新的网络账号分享/多人管理系统</span>
+                                        <span class="tag is-info is-medium">网络账号分享/多人管理系统</span>
                                     </li>
                                     <li>
-                                        <span>完善的注册/邀请/计费/充值/后台/用户管理系统</span>
+                                        轻量级Css框架
+                                        <span id="highlight">Bulma</span>
+                                    </li>
+                                    <li>
+                                        后台由
+                                        <span id="highlight">Django</span>强力驱动
+                                    </li>
+                                    <li>
+                                        使用
+                                        <span id="highlight">Mysql</span>作为数据库
+                                    </li>
+                                    <li>
+                                        详细的安装
+                                        <span id="highlight">文档于Wiki</span>
                                     </li>
                                     <li>
                                         使用
                                         <span id="highlight">HTTPS/SSL证书</span>保证用户信息安全
                                     </li>
+
                                     <li>
-                                        <span>具有配套使用的
-                                            <strong id="highlight">telegram bot 机器人</strong>
+                                        <span>接入
+                                            <strong id="highlight">支付宝当面付</strong>插件，支持在线付款
                                         </span>
                                     </li>
                                     <li>
-                                        <span>前端：bulma 后端：django1.1</span>
+                                        <span>配套使用的
+                                            <strong id="highlight">Telegram Bot 机器人</strong>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>使用
+                                            <strong id="highlight">Ajax技术</strong>异步请求，减少服务器压力
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>完善的
+                                            <strong id="highlight">用户权限</strong>管理
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>实现注册/邀请/计费/充值/后台/用户管理</span>等功能
                                     </li>
                                     <li>
                                         <a href="https://www.ehcozone.ml/">
@@ -259,20 +305,28 @@
                             </div>
                         </article>
                     </div>
+                </div>
+
+                <div class="column">
                     <div class="box message">
                         <span class="tag is-link is-large">教育经历</span>
                         <hr>
                         <article class="message">
                             <div class="message-header">
-                                <p>苏州科技大学</p>
-                                <p>2018 - 毕业</p>
+                                <p>苏州科技大学 (社会保障专业)</p>
+                                <p>2014 - 2018</p>
                             </div>
                             <div class="message-body">
                                 <ul>
-                                    <li>大一：学生会外联部</li>
-                                    <li id="highlight">大二：CET-6</li>
-                                    <li>大三：分期乐校园经理/自学编程</li>
-                                    <li>大四：开始寻找实习</li>
+                                    <li>自学编程
+                                        <strong id="highlight">Python/Js/Java</strong>
+                                    </li>
+                                    <li>
+                                        <strong id="highlight">CET - 4/6 证书</strong>
+                                    </li>
+                                    <li>
+                                        <strong>能无障碍使用英文开发文档</strong>
+                                    </li>
                                 </ul>
                             </div>
                         </article>
@@ -283,38 +337,48 @@
                             </div>
                             <div class="message-body">
                                 <ul>
-                                    <li>北京理工大学：Python语言程序设计证书</li>
-                                    <li>北京理工大学：Python网络爬虫与信息提取证书</li>
-                                    <li>南京大学：用Python玩转数据证书</li>
+                                    <li>北京理工大学：Python语言程序设计</li>
+                                    <li>北京理工大学：Python网络爬虫与信息提取</li>
+                                    <li>南京大学：用Python玩转数据</li>
                                     <li>浙江大学：面向对象程序设计--Java语言</li>
                                 </ul>
                             </div>
                         </article>
-                        <article class="message">
-                            <div class="message-header">
-                                <p>语言水平</p>
-                                <p>CET - 4 / 6</p>
-                            </div>
-                            <div class="message-body">
-                                <ul>
-                                    <li>大一下/大二上 裸考通过等级考试</li>
-                                    <li>一定的英文听说读写能力</li>
-                                    <li>曾上过全英文慕课:
-                                        <strong id="highlight">哈佛大学公开课：cs50</strong>
-                                    </li>
-                                    <li>
-                                        <strong>能无障碍使用英文开发文档</strong>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
                     </div>
-                </div>
-
-                <div class="column">
                     <div class="box message">
                         <span class="tag is-link is-large">技术栈</span>
                         <hr>
+                        <article class="message">
+                            <div class="message-header">
+                                <p>Web后端</p>
+                            </div>
+                            <div class="message-body">
+                                <span class="tag is-info is-medium">Python/爬虫/算法</span>
+                                <p>了解Python
+                                    <span id="highlight">面向对象/列表推导</span>等高级用法</p>
+                                <p>熟练使用
+                                    <span id="highlight">Requests</span>模块编写爬虫</p>
+                                <p>基本掌握
+                                    <span id="highlight">Scrapy</span>爬虫框架的使用</p>
+                                <p>
+                                    <span id="highlight">反爬虫</span>的基本对策</p>
+                                <span class="tag is-info is-medium">MVC开发框架</span>
+                                <p>
+                                    <span id="highlight">RESTful API </span>设计</p>
+                                <p>熟练使用
+                                    <span id="highlight">Django</span>作为web后端开发框架</p>
+                                <p>了解
+                                    <span id="highlight">Flask</span>框架，并尝试阅读源码</p>
+                                <span class="tag is-info is-medium">SQL/数据库</span>
+                                <p>能书写基本的SQL语句 增删改查</p>
+                                <p>熟练掌握
+                                    <span id="highlight">Mysql</span>的基本使用</p>
+                                <p>熟练使用django
+                                    <span id="highlight">ORM</span>来管理数据</p>
+                                <p>利用
+                                    <span id="highlight">MongoDB</span>开发过爬虫爬取10w+数据</p>
+                            </div>
+                        </article>
                         <article class="message">
                             <div class="message-header">
                                 <p>Web前端</p>
@@ -323,83 +387,18 @@
                                 <span class="tag is-info is-medium">HTML/CSS</span>
                                 <p>了解
                                     <span id="highlight">HTML5/CSS3 </span>并能熟练使用部分新特性</p>
-                                <p>使用常见框架/bootstrap/bulam/prue快速布局网页</p>
-                                <p id="highlight">编写响应式/移动端网页</p>
+                                <p>使用常见框架Bootstrap/Bulma
+                                    <span id="highlight">编写响应式/移动端网页</span>
+                                </p>
                                 <span class="tag is-info is-medium">ECMAScript（JavaScript）</span>
-                                <p>熟悉 JavaScript
+                                <p>熟悉 JavaScript基本语法，
                                     <span id="highlight">代码编写遵守规范</span>
                                 </p>
-                                <p>使用常见的js库 如
+                                <p>能使用常见的第三方Js库如:
                                     <span id="highlight">Jquery/Vue.js</span>
                                 </p>
                                 <p>了解并使用
                                     <span id="highlight">Ajax技术</span>动态请求后端数据</p>
-                                <p>了解 JavaScript 面向对象知识</p>
-                                <p>学习 ECMAScript 规范 掌握部分
-                                    <span id="highlight">ES6/7</span>中的新增特性</p>
-                            </div>
-                        </article>
-                        <article class="message">
-                            <div class="message-header">
-                                <p>Web后端</p>
-                            </div>
-                            <div class="message-body">
-                                <span class="tag is-info is-medium">Python/爬虫/算法</span>
-                                <p>熟练掌握Python2/3基础语法知识</p>
-                                <p>了解Python
-                                    <span id="highlight">面向对象/列表推导</span>等高级用法</p>
-                                <p>熟练使用
-                                    <span id="highlight">requests</span>模块编写爬虫</p>
-                                <p>基本掌握
-                                    <span id="highlight">Scrapy</span>爬虫框架的使用</p>
-                                <p>应对
-                                    <span id="highlight">反爬虫</span>技术的对策</p>
-                                <p>经常去
-                                    <span id="highlight">leetcode</span>做一些算法题来锻炼思维</p>
-                                <p>能利用轮子快速构建项目</p>
-                                <span class="tag is-info is-medium">HTTP/HTTPS</span>
-                                <p>了解完整的HTTP请求的过程</p>
-                                <p>了解大多
-                                    <span id="highlight">HTTP状态码</span>的含义</p>
-                                <p>了解HTTPS的基本原理和
-                                    <span id="highlight">SSL证书</span>的配置</p>
-                                <p>了解服务器于客户端交流时request/response是怎么样的</p>
-                                <span class="tag is-info is-medium">MVC开发框架</span>
-                                <p>
-                                    <span id="highlight">RESTful API </span>设计</p>
-                                <p>熟练使用
-                                    <span id="highlight">django</span>作为web后端开发框架</p>
-                                <p>了解
-                                    <span id="highlight">flask</span>框架，并尝试阅读源码</p>
-                                <span class="tag is-info is-medium">SQL/数据库</span>
-                                <p>能书写基本的SQL语句 增删改查</p>
-                                <p>熟练掌握
-                                    <span id="highlight">Sqlite</span>的基本使用</p>
-                                <p>熟练掌握
-                                    <span id="highlight">Mysql</span>的基本使用</p>
-                                <p>熟练使用django
-                                    <span id="highlight">ORM</span>来管理数据</p>
-                                <p>利用
-                                    <span id="highlight">MogoDB</span>开发过爬虫爬取10w+数据</p>
-                            </div>
-                        </article>
-                        <article class="message">
-                            <div class="message-header">
-                                <p>Linux运维</p>
-                            </div>
-                            <div class="message-body">
-                                <span class="tag is-info is-medium">linux</span>
-                                <p>
-                                    <span id="highlight">两年</span>使用linux经验</p>
-                                <p>能够编写简单的shell脚本，从而自动化运行服务</p>
-                                <p>日常使用
-                                    <span id="highlight">Screen、superviso</span>r等工具管理linux服务</p>
-                                <p>
-                                    <span id="highlight">Nginx/Nvm</span>等常用组件的配置与使用</p>
-                                <span class="tag is-info is-medium">VPS</span>
-                                <p>熟悉Vps的使用</p>
-                                <p>利用Vultr/DigitalOcean/Aws/阿里云部署项目</p>
-                                <p>域名购买/CDN服务的使用</p>
                             </div>
                         </article>
                         <article class="message">
@@ -407,36 +406,21 @@
                                 <p>工具/其他</p>
                             </div>
                             <div class="message-body">
-                                <span class="tag is-info is-medium">科学上网</span>
                                 <p>
-                                    <span id="highlight">Google/Gmail</span>重度用户</p>
-                                <p>习惯阅读官网英文文档</p>
-                                <p>利用Google/stackflow来查找解决问题</p>
-                                <p>能配置多人/大规模/集群式/科学上网环境</p>
-                                <span class="tag is-info is-medium">Git/开源项目</span>
-                                <p>熟练掌握
-                                    <span id="highlight">Git/Github</span>的使用</p>
+                                    <span id="highlight">两年</span>使用linux经验</p>
+                                <p>了解
+                                    <span id="highlight">HTTP相关</span>常见知识</p>
                                 <p>持续
                                     <span id="highlight">200+</span>天坚持commit
                                 </p>
-                                <p>了解多人协同开发的基本流程和
-                                    <span id="highlight">分支管理</span>
-                                </p>
-                                <p>了解开源项目的基本运作流程</p>
+                                <p>熟练使用
+                                    <span id="highlight">Git/Github</span>等版本管理工具</p>
+                                <p>经常去
+                                    <span id="highlight">LeetCode</span>做一些算法题来锻炼思维</p>
                                 <p>参与过
-                                    <span id="highlight">bulma/python-alipay-sdk</span>等开源项目</p>
-                                <p>了解
-                                    <span id="highlight">MIT/GPL</span>等常用协议</p>
-                                <span class="tag is-info is-medium">工具</span>
-                                <p>熟练掌握
-                                    <span id="highlight">Markdown</span>的书写语法</p>
-                                <p>日常使用
-                                    <span id="highlight">Vscode</span>作为主力开发工具</p>
-                                <p>Docker的基本使用</p>
-                                <span class="tag is-info is-medium">计算机基础</span>
-                                <p>小学时代开始接触PC，有一定的硬件维护/检修能力</p>
-                                <p>
-                                    <span id="highlight">黑苹果</span>爱好者，能给普通家用机装上Mac os</p>
+                                    <span id="highlight">Bulma/python-alipay-sdk</span>等开源项目</p>
+                                <p>科学上网，擅用
+                                    <span id="highlight">Google/stack overflow</span>检索资料</p>
                             </div>
                         </article>
                     </div>
@@ -450,7 +434,7 @@
             <div class="content has-text-centered">
                 <p>
                     Ehco's Resume
-                    <strong>Prowered by</strong>
+                    <strong>Powered by</strong>
                     <a href="https://github.com/Ehco1996">Ehco1996</a>
                 </p>
             </div>
