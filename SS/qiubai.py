@@ -1,4 +1,5 @@
 import requests
+import random
 from bs4 import BeautifulSoup
 
 
@@ -12,37 +13,31 @@ def get_html_text(url):
         return 'something wrong'
 
 
-def get_jokes(url):
+def get_joke():
     '''
-    返回当前url页面的糗百的
-    段子作者，主体，热评
-    返回类型：列表
+    抓取一个糗事段子
     '''
-    joke_list = []
 
-    html = get_html_text(url)
+    html = get_html_text(
+        'https://www.qiushibaike.com/8hr/page/{}/'.format(random.randint(1, 9)))
     soup = BeautifulSoup(html, 'lxml')
+    articles = soup.find_all(
+        'div', class_='article block untagged mb15 typs_hot')
+    article = random.choice(articles)
 
-    articles = soup.find_all('div', class_='article block untagged mb15 typs_hot')
+    body = article.find('span').text
+    author = article.find('img')['alt']
+    try:
+        comment = article.find(
+            'div', class_='main-text').contents[0].replace('\n', '')
+    except:
+        comment = '暂时没有热评'
 
-    for article in articles:
-        body = article.find('span').text
-        author = article.find('img')['alt']
-        try:
-            comment = article.find(
-                'div', class_='main-text').contents[0].replace('\n', '')
-        except:
-            comment = '暂时没有热评'
-
-        joke = '作者：{}\n{}\n\n热评{}'.format(author, body, comment)
-        joke_list.append(joke)
-    
-    if len(joke_list)==0:
-        joke_list.append('爬虫出现错误，快联系作者去更新吧！')
-    
-    return joke_list
+    joke = '作者：{}{}热评: {}'.format(author, body, comment)
 
 
+    return joke
 
 # test
-#print(get_jokes('https://www.qiushibaike.com/'))
+# print(get_joke())
+
