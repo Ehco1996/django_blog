@@ -45,10 +45,7 @@ INSTALLED_APPS = [
     'haystack',
     'blog',
     'comments',
-    'users',
     'SS',
-    'ckeditor',
-    'ckeditor_uploader',
 ]
 from django.conf import global_settings
 
@@ -144,10 +141,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-# 配置ckeditor的media路径
-# 该路劲自动追加到meida后
-CKEDITOR_UPLOAD_PATH = "ckeditorupload/"
-
 
 # 高亮分词搜索的配置
 # 指定engine为我们自己开发的blog.whoosh_cn_backend.WhooshEngine

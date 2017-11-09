@@ -14,8 +14,6 @@ import random
 # 引入自动回复字典文件
 from .replay_rules import rules
 # 引入外部处理函数
-from .qiubai import get_jokes
-from .search import mainloop
 from .foodfind import get_random_food
 
 nav_bar = '''公众号正在开发中...

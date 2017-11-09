@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>markdown测试页面</title>
+    <script src="https://cdn.bootcss.com/markdown-it/8.4.0/markdown-it.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <textarea id="target-editor" data-provide="markdown" rows="10" data-img-upload-url="{{ url_for(" markdown_files.images
+        ") }}"></textarea>
+
+</body>
+
+<script type="text/javascript">
+    $(function () {
+        editormd("my-editormd", {//注意1：这里的就是上面的DIV的id属性值
+            width: "90%",
+            height: 640,
+            syncScrolling: "single",
+            path: "/smart-api/htdocs/mdeditor/lib/",//注意2：你的路径
+            saveHTMLToTextarea: true//注意3：这个配置，方便post提交表单
+        });
+    });
+</script>
+
+
+</html>

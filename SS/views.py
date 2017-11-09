@@ -8,9 +8,8 @@ from django.utils.encoding import smart_str
 import hashlib
 import time
 import datetime
-
 from .handle import main_handle
-from .models import MoneyRecord, ImageUrl
+
 
 
 # Create your views here.

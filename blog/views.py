@@ -5,7 +5,6 @@ from django.views.generic import ListView, DetailView
 import markdown
 from django.db.models import Q
 
-
 from comments.forms import CommentForm
 from .models import Category, Post, Tag
 

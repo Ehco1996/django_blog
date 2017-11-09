@@ -5,20 +5,22 @@
 			{{ post.title }}
 		</h1>
 		<div class="entry-meta">
-			<span class="post-category"><a href="#">{{ post.category.name }} </a></span>
+			<span class="post-category">
+				<a href="#">{{ post.category.name }} </a>
+			</span>
 			<span class="post-date">
-      <a href="#">
-        <time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }} </time>
-      </a>
-    </span>
-
-			<span class="post-author"><a href="#">{{ post.author }} </a></span>
-
-			<span class="comments-link"><a href="#"> read: {{ post.count }}</a></span>
-
+				<a href="#">
+					<time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }} </time>
+				</a>
+			</span>
+			<span class="post-author">
+				<a href="#">{{ post.author }} </a>
+			</span>
+			<span class="comments-link">
+				<a href="#"> read: {{ post.count }}</a>
+			</span>
 		</div>
 	</header>
-
 
 	<div class="entry-content clearfix ">
 		<div class="head-img img-responsive">
@@ -34,10 +36,14 @@
 </article>
 <ul class="上下文关联">
 	<li>
-		<a href="{{ pre_post.get_absolute_url }}"> <strong>上一篇 ：{{ pre_post.title }}</strong> </a>
+		<a href="{{ pre_post.get_absolute_url }}">
+			<strong>上一篇 ：{{ pre_post.title }}</strong>
+		</a>
 	</li>
 	<li>
-		<a href="{{ next_post.get_absolute_url }}"> <strong> 下一篇 ：{{ next_post.title }} </strong></a>
+		<a href="{{ next_post.get_absolute_url }}">
+			<strong> 下一篇 ：{{ next_post.title }} </strong>
+		</a>
 	</li>
 </ul>
 <section class="comment-area" id="comment-area">
@@ -70,27 +76,28 @@
 		<h4>评论列表:</h4>
 		<ul class="comment-list">
 			{% for comment in comment_list %}
-				<li class="comment-item">
-				<span class="nickname"><strong>{{ comment.name }}</strong></span>
+			<li class="comment-item">
+				<span class="nickname">
+					<strong>{{ comment.name }}</strong>
+				</span>
 				<div class="comment-text">
 					{{ comment.text }}
 				</div>
 				<time class="submit-date" datetime="{{ comment.created_time }}">{{ comment.created_time }}</time> - - -
 				<a class="lead" href="{% url 'comments:comment_reply' post.pk comment.pk %}">回复</a>
-				</li>
-				{% for child in child_comment %}
-					{% if child.parent == comment.pk %}
-						<li class="child-comment">
-						<span class="nickname"><strong>{{ child.name }} →  {{ comment.name }}</strong></span>
-						<div class="comment-text">
-							{{ child.text }}
-						</div>
-						<time class="submit-date" datetime="{{ comment.created_time }}">{{ child.created_time }}</time> - - -
-						<a class="lead" href="{% url 'comments:comment_reply' post.pk comment.pk %}">回复</a>
-						</li>
-					{% endif %}
-				{% endfor %}
-			{% empty %} 暂无评论 {% endfor %}
+			</li>
+			{% for child in child_comment %} {% if child.parent == comment.pk %}
+			<li class="child-comment">
+				<span class="nickname">
+					<strong>{{ child.name }} → {{ comment.name }}</strong>
+				</span>
+				<div class="comment-text">
+					{{ child.text }}
+				</div>
+				<time class="submit-date" datetime="{{ comment.created_time }}">{{ child.created_time }}</time> - - -
+				<a class="lead" href="{% url 'comments:comment_reply' post.pk comment.pk %}">回复</a>
+			</li>
+			{% endif %} {% endfor %} {% empty %} 暂无评论 {% endfor %}
 		</ul>
 	</div>
 </section>
