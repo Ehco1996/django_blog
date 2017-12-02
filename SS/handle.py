@@ -17,6 +17,7 @@ from .replay_rules import rules
 from .foodfind import get_random_food
 from .invitecode import get_invite_code
 from .qiubai import get_joke
+from .search import mainloop
 nav_bar = '''公众号正在开发中...
  
 回复「指南」
@@ -33,11 +34,6 @@ nav_bar = '''公众号正在开发中...
 
 回复「今天吃什么」
 即可随机获得一道美食
-
-回复 「图片+关键词」
-即可获得相关图片链接
-重复搜索能得到不同答案
-
 '''
 
 
@@ -70,11 +66,7 @@ def main_handle(xml):
     # 目前只能自动回复文本类型的消息
     if msg_type == 'text':
         # 当收到的信息在处理规则之中时
-        if msg_content[:2] == '图片':
-            q = msg_content.split(' ')[1]
-            text = mainloop(q)
-            return parser_text(xml, text)
-        elif msg_content == '邀请码':
+        if msg_content == '邀请码':
             text = get_invite_code()
             return parser_text(xml, text)
         elif msg_content == '今天吃什么':
@@ -85,7 +77,7 @@ def main_handle(xml):
             return parser_text(xml, text)
         # 针对段子特殊处理
         elif msg_content == '段子' or msg_content == '来个段子':
-            jokes = get_jokes('https://www.qiushibaike.com/')
+            jokes = get_joke()
             text = jokes[random.randint(0, len(jokes) - 1)]
             return parser_text(xml, text)
         # 当不属于规则是，返回一个功能引导菜单
