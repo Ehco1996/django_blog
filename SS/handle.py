@@ -16,6 +16,7 @@ from .replay_rules import rules
 # 引入外部处理函数
 from .foodfind import get_random_food
 from .invitecode import get_invite_code
+from .qiubai import get_joke
 nav_bar = '''公众号正在开发中...
  
 回复「指南」

@@ -1,9 +1,9 @@
-import config
-from store import DbToMysql
+from .config import EHCO_DB
+from .store import DbToMysql
 
 
 def get_invite_code():
-    store = DbToMysql(config.EHCO_DB)
+    store = DbToMysql(EHCO_DB)
     res = store.find_by_fields('shadowsocks_invitecode', {
                                'code_id': 1, 'isused': 0})
     if res != -1:

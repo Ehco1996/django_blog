@@ -4,7 +4,6 @@
 
 import pymysql.cursors
 
-import config
 
 
 class DbToMysql():
