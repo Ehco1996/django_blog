@@ -15,7 +15,7 @@ import random
 from .replay_rules import rules
 # 引入外部处理函数
 from .foodfind import get_random_food
-
+from .invitecode import get_invite_code
 nav_bar = '''公众号正在开发中...
  
 回复「指南」
@@ -23,6 +23,9 @@ nav_bar = '''公众号正在开发中...
 
 回复「爬虫」
 即可获得相关文章
+
+回复「邀请码」
+即可获得谜之屋邀请码
 
 回复「段子/来个段子」
 即可获新鲜的段子
@@ -69,6 +72,9 @@ def main_handle(xml):
         if msg_content[:2] == '图片':
             q = msg_content.split(' ')[1]
             text = mainloop(q)
+            return parser_text(xml, text)
+        elif msg_content == '邀请码':
+            text = get_invite_code()
             return parser_text(xml, text)
         elif msg_content == '今天吃什么':
             text = get_random_food()

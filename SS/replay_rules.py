@@ -8,5 +8,8 @@ rules = {
     '黑域': "链接:https://pan.baidu.com/s/1gfCEdnt 密码:v2ze",
     '妹纸图': '链接:https://pan.baidu.com/s/1qY2Rbq8 密码:rqv6',
     '妹子图': '链接:https://pan.baidu.com/s/1qY2Rbq8 密码:rqv6',
-    '邀请码': '关闭对外公开注册，具体可以进Telegram群了解全部信息:\nhttps://t.me/Ehcobreakwa11'
+    '谜之屋': 'https://www.ehcozone.ml/ 请不要在微信直接打开',
+    '网站': 'https://www.ehcozone.ml/ 请不要在微信直接打开',
+    '群链接': 'https://t.me/Ehcobreakwa11',
+    'telegram': 'https://t.me/Ehcobreakwa11',
 }
