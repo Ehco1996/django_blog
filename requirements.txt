@@ -1,4 +1,5 @@
 astroid==1.5.3
+async-timeout==2.0.0
 beautifulsoup4==4.6.0
 bootstrap-admin==0.3.7.1
 bs4==0.0.1
@@ -14,9 +15,11 @@ lazy-object-proxy==1.3.1
 lxml==4.1.1
 Markdown==2.6.8
 mccabe==0.6.1
+multidict==3.3.2
 olefile==0.44
 Pillow==4.3.0
 pylint==1.7.1
+PyMySQL==0.7.11
 pytz==2017.3
 requests==2.18.4
 six==1.11.0
@@ -24,3 +27,4 @@ urllib3==1.22
 uWSGI==2.0.15
 Whoosh==2.7.4
 wrapt==1.10.11
+yarl==0.15.0

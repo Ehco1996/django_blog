@@ -17,7 +17,7 @@ from .replay_rules import rules
 from .foodfind import get_random_food
 from .invitecode import get_invite_code
 from .qiubai import get_joke
-from .search import mainloop
+
 nav_bar = '''公众号正在开发中...
  
 回复「指南」
@@ -77,8 +77,7 @@ def main_handle(xml):
             return parser_text(xml, text)
         # 针对段子特殊处理
         elif msg_content == '段子' or msg_content == '来个段子':
-            jokes = get_joke()
-            text = jokes[random.randint(0, len(jokes) - 1)]
+            text = get_joke()
             return parser_text(xml, text)
         # 当不属于规则是，返回一个功能引导菜单
         else:
