@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+{% load static %}
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" />
+    <title>跳一跳 刷分！</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+</head>
+
+<body>
+    <section class="hero is-info is-fullheight">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <p class="navbar-item title">
+                            跳一跳小游戏 刷分！
+                        </p>
+                        <span class="navbar-burger burger" data-target="navbarMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenu" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item">
+                                知乎
+                            </a>
+                            <a class="navbar-item">
+                                Blog
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-6 is-offset-3">
+                    <h1 class="title">
+                        程序源代码部分来自:
+                        <a id="highlight" href="https://zhuanlan.zhihu.com/p/32473340">知乎id：麦文俊</a>
+                    </h1>
+                    <br>
+                    <h2 class="subtitle">
+                        1. 通过抓包软件抓取小程序的发送的请求，从中获取到session_id
+                    </h2>
+                    <h2 class="subtitle">
+                        2. 在下面的编辑框里输入对应的session_id 和你想要的分数 点击提交
+                    </h2>
+                    <h2 class="subtitle">
+                        3. 如果成功了 页面会返回ok，关闭的微信并重新打开，排行榜就更新啦！
+                    </h2>
+                    <div class="box">
+                        <form class="form" action="{% url 'jumpgame:jump' %}" method="post">
+                            {% csrf_token %}
+                            <div class="field is-grouped">
+                                <p class="control is-expanded">
+                                    <input class="input" name="session_id" placeholder="输入你的 session_id ">
+                                </p>
+                                <p class="control is-expanded">
+                                    <input class="input" type="number" name="score" placeholder="输入想要的分数">
+                                </p>
+                                <p class="control">
+                                    <button class="button is-info" type="submit">
+                                        提交
+                                    </button>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

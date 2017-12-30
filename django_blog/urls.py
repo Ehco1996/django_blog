@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'', include('comments.urls', namespace='comments')),
     url(r'^search/',include('haystack.urls')),
     url(r'^wechat/',include('SS.urls',namespace='SS')),
+    url(r'^wxgame/',include('jumpgame.urls',namespace='jumpgame')),    
 ] 
