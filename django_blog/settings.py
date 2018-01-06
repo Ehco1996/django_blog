@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'blog',
     'comments',
     'SS',
-    'jumpgame',
 ]
 from django.conf import global_settings
 
