@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+{% load static %}
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" />
+    <title>iPhone x 猫耳壁纸</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+</head>
+
+<body>
+    <section class="hero is-info is-fullheight">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <p class="navbar-item title">
+                            制作自己的耳朵壁纸
+                        </p>
+                        <span class="navbar-burger burger" data-target="navbarMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenu" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item" href="https://www.zhihu.com/people/Ehcostuff/">
+                                知乎
+                            </a>
+                            <a class="navbar-item" href="http://www.ehcoblog.ml/">
+                                Blog
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-6 is-offset-3">
+                    <div class="box">
+                        <article class="message is-info">
+                            <div class="message-header">
+                                <p>制作自己的iPhone x 壁纸
+                                </p>
+                                <button class="delete" aria-label="delete"></button>
+                            </div>
+                            <div class="message-body">
+                                觉得
+                                <strong>刘海</strong>太难看？
+                                <p>快把他变成可爱的
+                                    <strong>猫耳朵吧！</strong>
+                                </p>
+                                <p>先从本地上传一张分辨率ok的图片</p>
+                                <p>点击
+                                    <strong>提交，网站会返回一张耳朵图哦</strong>
+                                </p>
+                                <p>最后右键
+                                    <strong>另存为</strong>到本机就OK啦！</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="box">
+                        <form action="" enctype="multipart/form-data" method="post">
+                            {% csrf_token %}
+                            <div class="field is-grouped">
+                                <div class="control has-icons-left is-expanded">
+                                    <div class="file">
+                                        <label class="file-label">
+                                            <input class="file-input" type="file" name="imgfile" required>
+                                            <span class="file-cta">
+                                                <span class="file-icon">
+                                                    <i class="fa fa-upload"></i>
+                                                </span>
+                                                <span class="file-label">
+                                                    选择图片
+                                                </span>
+                                            </span>
+                                            <span class="file-name">
+                                                {{ filename }}
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <p class="control">
+                                    <button class="button is-info" type="submit">
+                                        提交
+                                    </button>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
