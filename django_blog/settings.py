@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'haystack',
     'blog',
     'comments',
-    'SS',
-    'earimg',
 ]
 from django.conf import global_settings
 
